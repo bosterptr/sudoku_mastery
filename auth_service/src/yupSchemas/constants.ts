@@ -1,0 +1,11 @@
+export const maxPasswordLength = 255;
+export const minPasswordLength = 8;
+// export const minFirstNameLength = 3;
+// export const maxFirstNameLength = 64;
+export const minDisplayNameLength = 3;
+export const maxDisplayNameLength = 64;
+// export const minLastNameLength = 3;
+// export const maxLastNameLength = 64;
+export const maxProfileBioLength = 35;
+export const minProfileBioLength = 1;
+export const maxEmailLength = 255;

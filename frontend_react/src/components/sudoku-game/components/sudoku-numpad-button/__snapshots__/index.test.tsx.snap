@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NumpadButton renders button component with all props 1`] = `
+<DocumentFragment>
+  .c0 {
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 0;
+  color: #1648ff;
+  cursor: pointer;
+  flex-basis: 32%;
+  font-size: 3.2em;
+  font-weight: 700;
+  height: auto;
+  margin: 1%;
+  padding: 0px;
+  text-align: center;
+  transition: background-color 0.1s ease-in-out,color 0.1s ease-in-out;
+}
+
+.c0:hover {
+  background-color: #f0f4f4;
+  color: #1648ff;
+}
+
+.c0:active {
+  background-color: #1648ff;
+  color: #fff;
+}
+
+@media (max-width: 400px) {
+  .c0 {
+    font-size: 2.4em;
+  }
+}
+
+@media (min-width: 801px) {
+  .c0:nth-child(3n-2) {
+    margin-left: 0;
+  }
+
+  .c0:nth-child(3n) {
+    margin-right: 0;
+  }
+
+  .c0:first-child,
+  .c0:nth-child(2),
+  .c0:nth-child(3) {
+    margin-top: 0;
+  }
+
+  .c0:nth-child(7),
+  .c0:nth-child(8),
+  .c0:nth-child(9) {
+    margin-bottom: 0;
+  }
+}
+
+<button
+    class="c0 X"
+  >
+    2
+  </button>
+</DocumentFragment>
+`;
+
+exports[`NumpadButton renders button component with required props 1`] = `
+<DocumentFragment>
+  .c0 {
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 0;
+  color: #1648ff;
+  cursor: pointer;
+  flex-basis: 32%;
+  font-size: 3.2em;
+  font-weight: 700;
+  height: auto;
+  margin: 1%;
+  padding: 0px;
+  text-align: center;
+  transition: background-color 0.1s ease-in-out,color 0.1s ease-in-out;
+}
+
+.c0:hover {
+  background-color: #f0f4f4;
+  color: #1648ff;
+}
+
+.c0:active {
+  background-color: #1648ff;
+  color: #fff;
+}
+
+@media (max-width: 400px) {
+  .c0 {
+    font-size: 2.4em;
+  }
+}
+
+@media (min-width: 801px) {
+  .c0:nth-child(3n-2) {
+    margin-left: 0;
+  }
+
+  .c0:nth-child(3n) {
+    margin-right: 0;
+  }
+
+  .c0:first-child,
+  .c0:nth-child(2),
+  .c0:nth-child(3) {
+    margin-top: 0;
+  }
+
+  .c0:nth-child(7),
+  .c0:nth-child(8),
+  .c0:nth-child(9) {
+    margin-bottom: 0;
+  }
+}
+
+<button
+    class="c0"
+  >
+    2
+  </button>
+</DocumentFragment>
+`;

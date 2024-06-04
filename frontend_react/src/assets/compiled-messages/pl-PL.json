@@ -1,0 +1,492 @@
+{
+  "+os5oz": [
+    {
+      "type": 0,
+      "value": "Widzimy, że logujesz się do nowego urządzenia"
+    }
+  ],
+  "10Bqa8": [
+    {
+      "type": 0,
+      "value": "W ramach dodatkowego zabezpieczenia musisz przyznać dostęp do tego urządzenia, wprowadzając specjalny kod, który właśnie wysłaliśmy na Twój adres e-mail."
+    }
+  ],
+  "2LcOko": [
+    {
+      "type": 0,
+      "value": "W ramach dodatkowego zabezpieczenia musisz przyznać dostęp do tego urządzenia i adresu sieciowego, wprowadzając specjalny kod, który właśnie wysłaliśmy na Twój adres e-mail."
+    }
+  ],
+  "5BDorb": [
+    {
+      "type": 0,
+      "value": "Gratulacje, Mistrzu Łamigłówek!"
+    }
+  ],
+  "5kK/Ox": [
+    {
+      "type": 0,
+      "value": "Twój token wygasł"
+    }
+  ],
+  "5sg7KC": [
+    {
+      "type": 0,
+      "value": "Hasło"
+    }
+  ],
+  "6n4LpX": [
+    {
+      "type": 0,
+      "value": "Łatwy"
+    }
+  ],
+  "6xap9L": [
+    {
+      "type": 0,
+      "value": "Dobrze"
+    }
+  ],
+  "7+Domh": [
+    {
+      "type": 0,
+      "value": "Notatki"
+    }
+  ],
+  "7xgFMs": [
+    {
+      "type": 0,
+      "value": "Adres e-mail lub hasło jest nieprawidłowe. Spróbuj ponownie."
+    }
+  ],
+  "8anod9": [
+    {
+      "type": 0,
+      "value": "Błędy"
+    }
+  ],
+  "99dav+": [
+    {
+      "type": 0,
+      "value": "W ramach dodatkowego zabezpieczenia musisz przyznać dostęp do tego adresu sieciowego, wprowadzając specjalny kod, który właśnie wysłaliśmy na Twój adres e-mail."
+    }
+  ],
+  "9dZh0+": [
+    {
+      "type": 0,
+      "value": "Utwórz sudoku"
+    }
+  ],
+  "BEX6A7": [
+    {
+      "type": 0,
+      "value": "Mój profil"
+    }
+  ],
+  "BkpHf8": [
+    {
+      "type": 0,
+      "value": "Hasło nie pasuje do adresu e-mail"
+    }
+  ],
+  "C4dVmi": [
+    {
+      "type": 0,
+      "value": "Ekspert"
+    }
+  ],
+  "CRIOQ0": [
+    {
+      "type": 0,
+      "value": "Przegrałeś tę grę przez swoje trzy błędy."
+    }
+  ],
+  "Ddddgn": [
+    {
+      "type": 0,
+      "value": "Widzimy, że logujesz się z nowego miejsca."
+    }
+  ],
+  "DgZphg": [
+    {
+      "type": 0,
+      "value": "Silne hasło zapobiega nieautoryzowanemu dostępowi do Twojego konta."
+    }
+  ],
+  "DpljO/": [
+    {
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 0,
+              "value": "To hasło pojawiło się już "
+            },
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " raz w przypadku naruszenia bezpieczeństwa danych. Użyj bezpieczniejszej alternatywy"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 0,
+              "value": "To hasło pojawiło się wcześniej w przypadku naruszenia bezpieczeństwa danych "
+            },
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " razy. Użyj więcej bezpieczna alternatywa"
+            }
+          ]
+        }
+      },
+      "pluralType": "cardinal",
+      "type": 6,
+      "value": "passwordPwnedCount"
+    }
+  ],
+  "H4qy2K": [
+    {
+      "type": 0,
+      "value": "Bardzo silny"
+    }
+  ],
+  "IZy6Qj": [
+    {
+      "type": 0,
+      "value": "Nowa gra"
+    }
+  ],
+  "J6ywQ3": [
+    {
+      "type": 0,
+      "value": "Aparat"
+    }
+  ],
+  "JkS37H": [
+    {
+      "type": 0,
+      "value": "Cofnij"
+    }
+  ],
+  "JqiqNj": [
+    {
+      "type": 0,
+      "value": "Coś poszło nie tak"
+    }
+  ],
+  "K5AOKh": [
+    {
+      "type": 0,
+      "value": "Twoje myślenie strategiczne zwyciężyło!"
+    }
+  ],
+  "KdwlYA": [
+    {
+      "type": 0,
+      "value": "Użytkownik nie istnieje"
+    }
+  ],
+  "NOTA3a": [
+    {
+      "type": 0,
+      "value": "Silny"
+    }
+  ],
+  "NWtNCT": [
+    {
+      "type": 0,
+      "value": "Hasło nie pasuje do wyświetlanej nazwy"
+    }
+  ],
+  "NpuLmT": [
+    {
+      "type": 0,
+      "value": "Profil użytkownika"
+    }
+  ],
+  "Pz53OD": [
+    {
+      "type": 0,
+      "value": "Wpisz swój adres e-mail lub numer telefonu, aby wyszukać swoje konto."
+    }
+  ],
+  "RBxUdo": [
+    {
+      "type": 0,
+      "value": "Dziękujemy za aktywację konta."
+    }
+  ],
+  "RtfJfe": [
+    {
+      "type": 0,
+      "value": "Odśwież stronę"
+    }
+  ],
+  "SQJto2": [
+    {
+      "type": 0,
+      "value": "Zaloguj się"
+    }
+  ],
+  "Sjr48e": [
+    {
+      "type": 0,
+      "value": "Siła hasła niedostępna"
+    }
+  ],
+  "UA2rpD": [
+    {
+      "type": 0,
+      "value": "Zarejestruj się podając swój adres e-mail i hasło"
+    }
+  ],
+  "V/JHlm": [
+    {
+      "type": 0,
+      "value": "Zapomniałeś hasła?"
+    }
+  ],
+  "VzzYJk": [
+    {
+      "type": 0,
+      "value": "Utwórz"
+    }
+  ],
+  "YlTxru": [
+    {
+      "type": 0,
+      "value": "Token wygasł lub został już wykorzystany, więc Twoje konto jest już aktywne."
+    }
+  ],
+  "c0vVbD": [
+    {
+      "type": 0,
+      "value": "ZALOGUJ SIĘ"
+    }
+  ],
+  "cjTz30": [
+    {
+      "type": 0,
+      "value": "Nie mam konta"
+    }
+  ],
+  "e6u8ZI": [
+    {
+      "type": 0,
+      "value": "Usuń"
+    }
+  ],
+  "fKCJ6Y": [
+    {
+      "type": 0,
+      "value": "Ustawienia konta i nie tylko."
+    }
+  ],
+  "fTpfS5": [
+    {
+      "type": 0,
+      "value": "Dostateczny"
+    }
+  ],
+  "fx99AL": [
+    {
+      "type": 0,
+      "value": "Słaby"
+    }
+  ],
+  "h2vipu": [
+    {
+      "type": 0,
+      "value": "Kod"
+    }
+  ],
+  "h4hXDR": [
+    {
+      "type": 0,
+      "value": "Wystąpił błąd"
+    }
+  ],
+  "hGhJkb": [
+    {
+      "type": 0,
+      "value": "Informacje osobiste"
+    }
+  ],
+  "huqKGl": [
+    {
+      "type": 0,
+      "value": "Utwórz konto"
+    }
+  ],
+  "jpcsft": [
+    {
+      "type": 0,
+      "value": "Musisz aktywować to konto przed zalogowaniem. Wysłano do Ciebie e-mail aktywacyjny."
+    }
+  ],
+  "kAEQyV": [
+    {
+      "type": 0,
+      "value": "OK"
+    }
+  ],
+  "mOl7f3": [
+    {
+      "type": 0,
+      "value": "Przepraszamy, ta strona jest uszkodzona"
+    }
+  ],
+  "n/hEP4": [
+    {
+      "type": 0,
+      "value": "Dziękujemy za rejestrację konta. Aby móc korzystać z naszej usługi musisz ją najpierw aktywować. Wysłano do Ciebie e-mail aktywacyjny."
+    }
+  ],
+  "n8uxry": [
+    {
+      "type": 0,
+      "value": "Trudny"
+    }
+  ],
+  "nkHzh9": [
+    {
+      "type": 0,
+      "value": "ZAREJESTRUJ SIĘ"
+    }
+  ],
+  "oLkLww": [
+    {
+      "type": 0,
+      "value": "Wynik"
+    }
+  ],
+  "olbkyL": [
+    {
+      "type": 0,
+      "value": "Wysłano e-mail dotyczący resetowania hasła"
+    }
+  ],
+  "ovJ26C": [
+    {
+      "type": 0,
+      "value": "Średni"
+    }
+  ],
+  "pQocQQ": [
+    {
+      "type": 0,
+      "value": "Na podany adres e-mail została wysłana wiadomość e-mail. Postępuj zgodnie ze wskazówkami zawartymi w wiadomości e-mail, aby zresetować hasło."
+    }
+  ],
+  "pwlQEY": [
+    {
+      "type": 0,
+      "value": "Nazwa wyświetlana"
+    }
+  ],
+  "qFpN4j": [
+    {
+      "type": 0,
+      "value": "WŁ"
+    }
+  ],
+  "rCzCPC": [
+    {
+      "type": 0,
+      "value": "Koniec gry"
+    }
+  ],
+  "rGmxAI": [
+    {
+      "type": 0,
+      "value": "Trudność"
+    }
+  ],
+  "sXOu1H": [
+    {
+      "type": 0,
+      "value": "Utwórz nowe misje sudoku"
+    }
+  ],
+  "sqXkAQ": [
+    {
+      "type": 0,
+      "value": "Hasło musi mieć co najmniej 8 znaków"
+    }
+  ],
+  "sy+pv5": [
+    {
+      "type": 0,
+      "value": "E-mail"
+    }
+  ],
+  "t4VNh8": [
+    {
+      "type": 0,
+      "value": "Mam już konto."
+    }
+  ],
+  "u1camE": [
+    {
+      "type": 0,
+      "value": "Konto aktywowane"
+    }
+  ],
+  "vcTCan": [
+    {
+      "type": 0,
+      "value": "WYŁ"
+    }
+  ],
+  "vlnUYY": [
+    {
+      "type": 0,
+      "value": "Trudność:"
+    }
+  ],
+  "wLmr8l": [
+    {
+      "type": 0,
+      "value": "Widzimy, że logujesz się z nowego urządzenia i miejsca."
+    }
+  ],
+  "xXbJso": [
+    {
+      "type": 0,
+      "value": "Wyloguj się"
+    }
+  ],
+  "yFyogM": [
+    {
+      "type": 0,
+      "value": "Zaloguj się przy użyciu swojego adresu e-mail i hasła."
+    }
+  ],
+  "yIK3vt": [
+    {
+      "type": 0,
+      "value": "Odzyskaj swoje konto"
+    }
+  ],
+  "zpKXjS": [
+    {
+      "type": 0,
+      "value": "Zmień hasło"
+    }
+  ],
+  "zwhXlq": [
+    {
+      "type": 0,
+      "value": "Aktywuj swoje konto"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnType": true,
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "files.eol": "\n",
+    "files.exclude": {
+      "**/.git": true,
+      "**/.DS_Store": true,
+      "**/__snapshots__": false,
+      "node_modules": false,
+      "docs": true
+    },
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "javascript.suggestionActions.enabled": false
+}

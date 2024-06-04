@@ -1,0 +1,6 @@
+syntax = "proto2";
+package org.sudoku.auth.v1.device;
+message added_to_user {
+  required string userId = 1;
+  required string deviceId = 2;
+}

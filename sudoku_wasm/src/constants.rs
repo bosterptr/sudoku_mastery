@@ -1,0 +1,8 @@
+pub const GRID_STROKE: u32 = 4;
+pub const OUTPUT_SIDE_LENGTH: u32 = 180;
+pub const OUTPUT_SIZE: u32 = OUTPUT_SIDE_LENGTH * OUTPUT_SIDE_LENGTH;
+pub const CELLS_IN_A_ROW: u32 = 9;
+pub const CELLS_IN_A_ROW_F64: f64 = 9.0;
+pub const ANGLE_TOLERANCE: f64 = 30.0;
+pub const MIN_CELL_SIDE_LENGTH: f64 = 30.0;
+pub const DEST_MAX_COORD: u32 = OUTPUT_SIDE_LENGTH + 10 * GRID_STROKE;

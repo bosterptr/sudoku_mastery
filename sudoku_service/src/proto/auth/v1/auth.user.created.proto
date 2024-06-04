@@ -1,0 +1,9 @@
+syntax = "proto2";
+package org.sudoku.auth.v1.user;
+message created {
+  required string id = 1;
+  required string email = 2;
+  required string hashedPassword = 3;
+  required string firstName = 4;
+  required string lastName = 5;
+}

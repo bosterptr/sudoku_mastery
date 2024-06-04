@@ -1,0 +1,245 @@
+apiVersion: kops.k8s.io/v1alpha2
+kind: Cluster
+metadata:
+  creationTimestamp: "2022-01-25T22:04:20Z"
+  generation: 7
+  name: sudoku.org
+spec:
+  additionalPolicies:
+    node: "[\n  {\n    \"Effect\":\"Allow\",\n    \"Action\": [\n      \"autoscaling:DescribeAutoScalingGroups\",\n
+      \     \"autoscaling:DescribeAutoScalingInstances\",\n      \"autoscaling:DescribeTags\",\n
+      \     \"autoscaling:DescribeLaunchConfigurations\",\n      \"autoscaling:SetDesiredCapacity\",\n
+      \     \"autoscaling:TerminateInstanceInAutoScalingGroup\",\n      \"ec2:DescribeLaunchTemplateVersions\"\n
+      \   ],\n    \"Resource\":\"*\"\n  }\n] \n"
+  api:
+    loadBalancer:
+      class: Classic
+      type: Public
+  authorization:
+    rbac: {}
+  channel: stable
+  cloudConfig:
+    awsEBSCSIDriver:
+      enabled: true
+      version: v1.14.1
+    manageStorageClasses: true
+  cloudControllerManager:
+    allocateNodeCIDRs: true
+    clusterCIDR: 100.64.0.0/10
+    clusterName: sudoku.org
+    configureCloudRoutes: false
+    image: registry.k8s.io/provider-aws/cloud-controller-manager:v1.26.0
+    leaderElection:
+      leaderElect: true
+  cloudProvider: aws
+  clusterDNSDomain: cluster.local
+  configBase: s3://sudoku-k8s-kops-store/sudoku.org
+  configStore: s3://sudoku-k8s-kops-store/sudoku.org
+  containerRuntime: containerd
+  containerd:
+    logLevel: info
+    runc:
+      version: 1.1.4
+    version: 1.6.18
+  dnsZone: Z06490773QB48ZZFDXBYU
+  docker:
+    skipInstall: true
+  etcdClusters:
+  - backups:
+      backupStore: s3://sudoku-k8s-kops-store/sudoku.org/backups/etcd/main
+    cpuRequest: 200m
+    etcdMembers:
+    - encryptedVolume: true
+      instanceGroup: master-eu-west-2a
+      name: a
+    memoryRequest: 100Mi
+    name: main
+    version: 3.5.7
+  - backups:
+      backupStore: s3://sudoku-k8s-kops-store/sudoku.org/backups/etcd/events
+    cpuRequest: 100m
+    etcdMembers:
+    - encryptedVolume: true
+      instanceGroup: master-eu-west-2a
+      name: a
+    memoryRequest: 100Mi
+    name: events
+    version: 3.5.7
+  externalDns:
+    provider: dns-controller
+  iam:
+    allowContainerRegistry: true
+    legacy: false
+  keyStore: s3://sudoku-k8s-kops-store/sudoku.org/pki
+  kubeAPIServer:
+    allowPrivileged: true
+    anonymousAuth: false
+    apiAudiences:
+    - kubernetes.svc.default
+    apiServerCount: 1
+    authorizationMode: Node,RBAC
+    bindAddress: 0.0.0.0
+    cloudProvider: external
+    enableAdmissionPlugins:
+    - NamespaceLifecycle
+    - LimitRanger
+    - ServiceAccount
+    - DefaultStorageClass
+    - DefaultTolerationSeconds
+    - MutatingAdmissionWebhook
+    - ValidatingAdmissionWebhook
+    - NodeRestriction
+    - ResourceQuota
+    etcdServers:
+    - https://127.0.0.1:4001
+    etcdServersOverrides:
+    - /events#https://127.0.0.1:4002
+    featureGates:
+      CSIMigrationAWS: "true"
+      InTreePluginAWSUnregister: "true"
+    image: registry.k8s.io/kube-apiserver:v1.26.3@sha256:b8dda58b0c680898b6ab7fdbd035a75065d3607a70c3c4986bc1d8cfba5f0ec8
+    kubeletPreferredAddressTypes:
+    - InternalIP
+    - Hostname
+    - ExternalIP
+    logLevel: 2
+    requestheaderAllowedNames:
+    - aggregator
+    requestheaderExtraHeaderPrefixes:
+    - X-Remote-Extra-
+    requestheaderGroupHeaders:
+    - X-Remote-Group
+    requestheaderUsernameHeaders:
+    - X-Remote-User
+    securePort: 443
+    serviceAccountIssuer: https://api.internal.sudoku.org
+    serviceAccountJWKSURI: https://api.internal.sudoku.org/openid/v1/jwks
+    serviceClusterIPRange: 100.64.0.0/13
+    storageBackend: etcd3
+  kubeControllerManager:
+    allocateNodeCIDRs: true
+    attachDetachReconcileSyncPeriod: 1m0s
+    cloudProvider: external
+    clusterCIDR: 100.96.0.0/11
+    clusterName: sudoku.org
+    configureCloudRoutes: false
+    featureGates:
+      CSIMigrationAWS: "true"
+      InTreePluginAWSUnregister: "true"
+    image: registry.k8s.io/kube-controller-manager:v1.26.3@sha256:28c0deb96fd861af5560b7e24b989a5d61f4a4b8467852d6975bf2a3a5217840
+    leaderElection:
+      leaderElect: true
+    logLevel: 2
+    useServiceAccountCredentials: true
+  kubeDNS:
+    cacheMaxConcurrent: 150
+    cacheMaxSize: 1000
+    cpuRequest: 100m
+    domain: cluster.local
+    memoryLimit: 170Mi
+    memoryRequest: 70Mi
+    nodeLocalDNS:
+      cpuRequest: 25m
+      enabled: false
+      image: registry.k8s.io/dns/k8s-dns-node-cache:1.22.16
+      memoryRequest: 5Mi
+    provider: CoreDNS
+    serverIP: 100.64.0.10
+  kubeProxy:
+    clusterCIDR: 100.96.0.0/11
+    cpuRequest: 100m
+    image: registry.k8s.io/kube-proxy:v1.26.3@sha256:d89b6c6a8ecc920753df713b268b0d226f795135c4a0ecc5ce61660e623dd6da
+    logLevel: 2
+  kubeScheduler:
+    featureGates:
+      CSIMigrationAWS: "true"
+      InTreePluginAWSUnregister: "true"
+    image: registry.k8s.io/kube-scheduler:v1.26.3@sha256:ef87c0880906a21ba55392e4c28bb75a526dd1e295e423f73e67dfc48e0c345c
+    leaderElection:
+      leaderElect: true
+    logLevel: 2
+  kubelet:
+    anonymousAuth: false
+    cgroupDriver: systemd
+    cgroupRoot: /
+    cloudProvider: external
+    clusterDNS: 100.64.0.10
+    clusterDomain: cluster.local
+    enableDebuggingHandlers: true
+    evictionHard: memory.available<100Mi,nodefs.available<10%,nodefs.inodesFree<5%,imagefs.available<10%,imagefs.inodesFree<5%
+    featureGates:
+      CSIMigrationAWS: "true"
+      InTreePluginAWSUnregister: "true"
+    kubeconfigPath: /var/lib/kubelet/kubeconfig
+    logLevel: 2
+    podInfraContainerImage: registry.k8s.io/pause:3.6@sha256:3d380ca8864549e74af4b29c10f9cb0956236dfb01c40ca076fb6c37253234db
+    podManifestPath: /etc/kubernetes/manifests
+    protectKernelDefaults: true
+    registerSchedulable: true
+    shutdownGracePeriod: 30s
+    shutdownGracePeriodCriticalPods: 10s
+  kubernetesApiAccess:
+  - 0.0.0.0/0
+  - ::/0
+  kubernetesVersion: 1.26.3
+  masterKubelet:
+    anonymousAuth: false
+    cgroupDriver: systemd
+    cgroupRoot: /
+    cloudProvider: external
+    clusterDNS: 100.64.0.10
+    clusterDomain: cluster.local
+    enableDebuggingHandlers: true
+    evictionHard: memory.available<100Mi,nodefs.available<10%,nodefs.inodesFree<5%,imagefs.available<10%,imagefs.inodesFree<5%
+    featureGates:
+      CSIMigrationAWS: "true"
+      InTreePluginAWSUnregister: "true"
+    kubeconfigPath: /var/lib/kubelet/kubeconfig
+    logLevel: 2
+    podInfraContainerImage: registry.k8s.io/pause:3.6@sha256:3d380ca8864549e74af4b29c10f9cb0956236dfb01c40ca076fb6c37253234db
+    podManifestPath: /etc/kubernetes/manifests
+    protectKernelDefaults: true
+    registerSchedulable: true
+    shutdownGracePeriod: 30s
+    shutdownGracePeriodCriticalPods: 10s
+  masterPublicName: api.sudoku.org
+  networkCIDR: 172.20.0.0/16
+  networking:
+    calico:
+      encapsulationMode: ipip
+  nodeTerminationHandler:
+    cpuRequest: 50m
+    enableRebalanceDraining: false
+    enableRebalanceMonitoring: false
+    enableSQSTerminationDraining: true
+    enableScheduledEventDraining: true
+    enableSpotInterruptionDraining: true
+    enabled: true
+    excludeFromLoadBalancers: true
+    managedASGTag: aws-node-termination-handler/managed
+    memoryRequest: 64Mi
+    prometheusEnable: false
+    version: v1.18.3
+  nonMasqueradeCIDR: 100.64.0.0/10
+  podCIDR: 100.96.0.0/11
+  secretStore: s3://sudoku-k8s-kops-store/sudoku.org/secrets
+  serviceClusterIPRange: 100.64.0.0/13
+  sshAccess:
+  - 0.0.0.0/0
+  - ::/0
+  subnets:
+  - cidr: 172.20.32.0/19
+    name: eu-west-2a
+    type: Private
+    zone: eu-west-2a
+  - cidr: 172.20.0.0/22
+    name: utility-eu-west-2a
+    type: Utility
+    zone: eu-west-2a
+  topology:
+    bastion:
+      bastionPublicName: bastion.sudoku.org
+    dns:
+      type: Public
+    masters: private
+    nodes: private

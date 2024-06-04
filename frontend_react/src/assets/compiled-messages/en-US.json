@@ -1,0 +1,486 @@
+{
+  "+os5oz": [
+    {
+      "type": 0,
+      "value": "We see you're signing in from a new device."
+    }
+  ],
+  "10Bqa8": [
+    {
+      "type": 0,
+      "value": "As an additional security measure, you'll need to grant access to this device by entering special code we've just sent to your email address."
+    }
+  ],
+  "2LcOko": [
+    {
+      "type": 0,
+      "value": "As an additional security measure, you'll need to grant access to this device and a network address by entering special code we've just sent to your email address."
+    }
+  ],
+  "5BDorb": [
+    {
+      "type": 0,
+      "value": "Congratulations, Puzzle Master!"
+    }
+  ],
+  "5kK/Ox": [
+    {
+      "type": 0,
+      "value": "Your token has expired"
+    }
+  ],
+  "5sg7KC": [
+    {
+      "type": 0,
+      "value": "Password"
+    }
+  ],
+  "6n4LpX": [
+    {
+      "type": 0,
+      "value": "Easy"
+    }
+  ],
+  "6xap9L": [
+    {
+      "type": 0,
+      "value": "Good"
+    }
+  ],
+  "7+Domh": [
+    {
+      "type": 0,
+      "value": "Notes"
+    }
+  ],
+  "7xgFMs": [
+    {
+      "type": 0,
+      "value": "Email address or password is incorrect. Please try again."
+    }
+  ],
+  "8anod9": [
+    {
+      "type": 0,
+      "value": "Mistakes"
+    }
+  ],
+  "99dav+": [
+    {
+      "type": 0,
+      "value": "As an additional security measure, you'll need to grant access to this network address by entering special code we've just sent to your email address."
+    }
+  ],
+  "9dZh0+": [
+    {
+      "type": 0,
+      "value": "Create sudoku"
+    }
+  ],
+  "BEX6A7": [
+    {
+      "type": 0,
+      "value": "My profile"
+    }
+  ],
+  "BkpHf8": [
+    {
+      "type": 0,
+      "value": "Password can't match email address"
+    }
+  ],
+  "C4dVmi": [
+    {
+      "type": 0,
+      "value": "Expert"
+    }
+  ],
+  "CRIOQ0": [
+    {
+      "type": 0,
+      "value": "You've lost this game because of your three mistakes."
+    }
+  ],
+  "Ddddgn": [
+    {
+      "type": 0,
+      "value": "We see you're signing in from a new place."
+    }
+  ],
+  "DgZphg": [
+    {
+      "type": 0,
+      "value": "A strong password helps prevent anauthorized access to your account."
+    }
+  ],
+  "DpljO/": [
+    {
+      "offset": 0,
+      "options": {
+        "one": {
+          "value": [
+            {
+              "type": 0,
+              "value": "This password has previously appeared in a data breach "
+            },
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " time. Please use a more secure alternative"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 0,
+              "value": "This password has previously appeared in a data breach "
+            },
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " times. Please use a more secure alternative"
+            }
+          ]
+        }
+      },
+      "pluralType": "cardinal",
+      "type": 6,
+      "value": "passwordPwnedCount"
+    }
+  ],
+  "H4qy2K": [
+    {
+      "type": 0,
+      "value": "Very strong"
+    }
+  ],
+  "IZy6Qj": [
+    {
+      "type": 0,
+      "value": "New game"
+    }
+  ],
+  "J6ywQ3": [
+    {
+      "type": 0,
+      "value": "Camera"
+    }
+  ],
+  "JkS37H": [
+    {
+      "type": 0,
+      "value": "Undo"
+    }
+  ],
+  "JqiqNj": [
+    {
+      "type": 0,
+      "value": "Something went wrong"
+    }
+  ],
+  "K5AOKh": [
+    {
+      "type": 0,
+      "value": "Your strategic thinking has triumphed!"
+    }
+  ],
+  "KdwlYA": [
+    {
+      "type": 0,
+      "value": "User does not exist"
+    }
+  ],
+  "NOTA3a": [
+    {
+      "type": 0,
+      "value": "Strong"
+    }
+  ],
+  "NWtNCT": [
+    {
+      "type": 0,
+      "value": "Password can't match display name"
+    }
+  ],
+  "NpuLmT": [
+    {
+      "type": 0,
+      "value": "User Profile"
+    }
+  ],
+  "Pz53OD": [
+    {
+      "type": 0,
+      "value": "Please enter your email or phone number to search for your account."
+    }
+  ],
+  "RBxUdo": [
+    {
+      "type": 0,
+      "value": "Thank you for activating your account."
+    }
+  ],
+  "RtfJfe": [
+    {
+      "type": 0,
+      "value": "Reload page"
+    }
+  ],
+  "SQJto2": [
+    {
+      "type": 0,
+      "value": "Sign in"
+    }
+  ],
+  "UA2rpD": [
+    {
+      "type": 0,
+      "value": "Sign up with your email and password"
+    }
+  ],
+  "V/JHlm": [
+    {
+      "type": 0,
+      "value": "Forgot password?"
+    }
+  ],
+  "VzzYJk": [
+    {
+      "type": 0,
+      "value": "Create"
+    }
+  ],
+  "YlTxru": [
+    {
+      "type": 0,
+      "value": "The token has expired, or has already been used, so your account is already active."
+    }
+  ],
+  "c0vVbD": [
+    {
+      "type": 0,
+      "value": "SIGN IN"
+    }
+  ],
+  "cjTz30": [
+    {
+      "type": 0,
+      "value": "I do not have an account"
+    }
+  ],
+  "e6u8ZI": [
+    {
+      "type": 0,
+      "value": "Erase"
+    }
+  ],
+  "fKCJ6Y": [
+    {
+      "type": 0,
+      "value": "Account settings and more."
+    }
+  ],
+  "fTpfS5": [
+    {
+      "type": 0,
+      "value": "Fair"
+    }
+  ],
+  "fx99AL": [
+    {
+      "type": 0,
+      "value": "Weak"
+    }
+  ],
+  "h2vipu": [
+    {
+      "type": 0,
+      "value": "Code"
+    }
+  ],
+  "h4hXDR": [
+    {
+      "type": 0,
+      "value": "An error has occurred"
+    }
+  ],
+  "hGhJkb": [
+    {
+      "type": 0,
+      "value": "Personal Info"
+    }
+  ],
+  "huqKGl": [
+    {
+      "type": 0,
+      "value": "Create account"
+    }
+  ],
+  "jpcsft": [
+    {
+      "type": 0,
+      "value": "You must activate that account before logging in. An activation email has been sent to you."
+    }
+  ],
+  "kAEQyV": [
+    {
+      "type": 0,
+      "value": "OK"
+    }
+  ],
+  "mOl7f3": [
+    {
+      "type": 0,
+      "value": "Sorry this page is broken"
+    }
+  ],
+  "n/hEP4": [
+    {
+      "type": 0,
+      "value": "Thank you for registering your account. In order to start using our service you must activate it first. An activation email has been sent to you."
+    }
+  ],
+  "n8uxry": [
+    {
+      "type": 0,
+      "value": "Hard"
+    }
+  ],
+  "nkHzh9": [
+    {
+      "type": 0,
+      "value": "SIGN UP"
+    }
+  ],
+  "oLkLww": [
+    {
+      "type": 0,
+      "value": "Score"
+    }
+  ],
+  "olbkyL": [
+    {
+      "type": 0,
+      "value": "Password reset email sent"
+    }
+  ],
+  "ovJ26C": [
+    {
+      "type": 0,
+      "value": "Medium"
+    }
+  ],
+  "pQocQQ": [
+    {
+      "type": 0,
+      "value": "An email has ben sent to the email address. Follow the directions in the email to reset your password."
+    }
+  ],
+  "pwlQEY": [
+    {
+      "type": 0,
+      "value": "Display Name"
+    }
+  ],
+  "qFpN4j": [
+    {
+      "type": 0,
+      "value": "ON"
+    }
+  ],
+  "rCzCPC": [
+    {
+      "type": 0,
+      "value": "Game over"
+    }
+  ],
+  "rGmxAI": [
+    {
+      "type": 0,
+      "value": "Difficulty"
+    }
+  ],
+  "sXOu1H": [
+    {
+      "type": 0,
+      "value": "Please create new sudoku missions"
+    }
+  ],
+  "sqXkAQ": [
+    {
+      "type": 0,
+      "value": "Password must have at least 8 characters"
+    }
+  ],
+  "sy+pv5": [
+    {
+      "type": 0,
+      "value": "Email"
+    }
+  ],
+  "t4VNh8": [
+    {
+      "type": 0,
+      "value": "I already have an account."
+    }
+  ],
+  "u1camE": [
+    {
+      "type": 0,
+      "value": "Account activated"
+    }
+  ],
+  "vcTCAn": [
+    {
+      "type": 0,
+      "value": "OFF"
+    }
+  ],
+  "vlnUYY": [
+    {
+      "type": 0,
+      "value": "Difficulty:"
+    }
+  ],
+  "wLmr8l": [
+    {
+      "type": 0,
+      "value": "We see you're signing in from a new device and place."
+    }
+  ],
+  "xXbJso": [
+    {
+      "type": 0,
+      "value": "Sign out"
+    }
+  ],
+  "yFyogM": [
+    {
+      "type": 0,
+      "value": "Sign in with your email and password."
+    }
+  ],
+  "yIK3vt": [
+    {
+      "type": 0,
+      "value": "Recover your account"
+    }
+  ],
+  "zpKXjS": [
+    {
+      "type": 0,
+      "value": "Change your password"
+    }
+  ],
+  "zwhXlq": [
+    {
+      "type": 0,
+      "value": "Activate your account"
+    }
+  ]
+}

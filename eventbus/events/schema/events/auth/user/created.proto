@@ -1,0 +1,10 @@
+syntax = "proto3";
+package org.sudoku.sudoku.eventbus.events.auth.v1.user;
+option go_package = "user";
+
+message created {
+  string id = 1;
+  string email = 2;
+  string first_name = 3;
+  string last_name = 4;
+}

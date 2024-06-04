@@ -1,0 +1,24 @@
+syntax = "proto2";
+package org.sudoku.auth.v1.user;
+
+enum Gender {
+  NOT_KNOWN = 0;
+  MALE = 1;
+  FEMALE = 2;
+  NOT_APPLICABLE = 3;
+}
+
+message updated {
+  required string id = 1;
+  optional string avatar = 2;
+  optional bool blocked = 3;
+  optional bool firstLogIn = 4;
+  optional string firstName = 5;
+  optional Gender gender = 6;
+  optional string jobTitle = 7;
+  optional string lastName = 8;
+  optional string hashedPassword = 9;
+  optional string profileBio = 10;
+  optional int32 tokenVersion = 11;
+  optional string socialId = 12;
+}

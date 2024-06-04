@@ -1,0 +1,1 @@
+export { SudokuPage } from './component';

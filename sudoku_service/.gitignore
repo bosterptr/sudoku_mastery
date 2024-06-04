@@ -1,0 +1,15 @@
+# Ignore compiled files and build directories
+target/
+Cargo.lock
+
+# Ignore IDE-specific files
+.idea/
+.vscode/
+*.swp
+
+# Ignore generated documentation
+doc/
+target/doc/
+
+# Ignore build artifacts created by cargo
+Cargo.toml.orig

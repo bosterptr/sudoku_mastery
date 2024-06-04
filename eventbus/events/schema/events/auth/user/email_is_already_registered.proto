@@ -1,0 +1,9 @@
+syntax = "proto3";
+package org.sudoku.sudoku.eventbus.events.auth.v1.user;
+option go_package = "user";
+
+message email_is_already_registered {
+  string email = 1;
+  string ip = 2;
+  string device_ua = 3;
+}

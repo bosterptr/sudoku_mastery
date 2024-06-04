@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingSpinner renders loading spinner component with all props 1`] = `
+<DocumentFragment>
+  .c0 {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+  animation-delay: 100ms;
+  animation-duration: 300;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-name: cJoqxJ;
+  animation-timing-function: ease;
+  opacity: 0;
+}
+
+.c1 {
+  border-right: 4px solid transparent;
+  border-top: 4px solid #d1d1d1;
+  border-radius: 50%;
+  position: relative;
+  transform: translateZ(0);
+  animation-name: epmXAj;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-top-color: #24292e1f;
+  border-right-color: #24292e1f;
+  border-bottom-color: #24292e1f;
+  border-left-color: currentColor;
+}
+
+<div
+    class="c0"
+    data-testid="spinner"
+    delay="100"
+  >
+    <div
+      class="c1"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`LoadingSpinner renders loading spinner component with required props 1`] = `
+<DocumentFragment>
+  .c0 {
+  animation-delay: 300ms;
+  animation-duration: 300;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-name: cJoqxJ;
+  animation-timing-function: ease;
+  opacity: 0;
+}
+
+.c1 {
+  border-right: 4px solid transparent;
+  border-top: 4px solid #d1d1d1;
+  border-radius: 50%;
+  position: relative;
+  transform: translateZ(0);
+  animation-name: epmXAj;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+<div
+    class="c0"
+    data-testid="spinner"
+    delay="300"
+  >
+    <div
+      class="c1"
+    />
+  </div>
+</DocumentFragment>
+`;

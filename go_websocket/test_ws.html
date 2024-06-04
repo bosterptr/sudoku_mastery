@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Chat Room</title>
+    <style>
+        #messages { height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; }
+        #messageInput { width: 80%; }
+    </style>
+</head>
+<body>
+    <h1>WebSocket Chat Room</h1>
+    <div id="messages"></div>
+    <label for="roomInput">Room:</label>
+    <input id="roomInput" type="text" placeholder="Enter room name..." />
+    <button onclick="connect()">Join Room</button>
+    <input id="messageInput" type="text" placeholder="Enter message here..." autofocus>
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        var ws;
+        function connect() {
+            var roomName = document.getElementById("roomInput").value;
+            if (!roomName) {
+                alert("Please enter a room name.");
+                return;
+            }
+        
+            ws = new WebSocket("ws://localhost:8080/ws?room=" + encodeURIComponent(roomName));
+        
+            ws.onopen = function() {
+                console.log("Connected to room", roomName);
+                attempt = 0; // reset reconnection attempts after a successful connection
+            };
+        
+            ws.onclose = function(e) {
+                console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+                attempt++;
+                setTimeout(function() {
+                    connect();
+                }, Math.min(10000, 1000 * attempt)); // reconnect after 1 second, increase delay on subsequent attempts
+            };
+        
+            ws.onmessage = function(event) {
+                var messages = document.getElementById("messages");
+                var message = document.createElement("div");
+                message.textContent = event.data;
+                messages.appendChild(message);
+            };
+        }
+
+        function sendMessage() {
+            var input = document.getElementById("messageInput");
+            if (input.value.trim() !== "") {
+                ws.send(input.value);
+                input.value = '';
+            }
+        }
+
+        window.onload = connect; // Connect to WebSocket when the page loads
+    </script>
+</body>
+</html>

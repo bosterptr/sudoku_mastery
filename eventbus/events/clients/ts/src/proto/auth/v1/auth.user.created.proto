@@ -1,0 +1,11 @@
+syntax = "proto3";
+package org.sudoku.sudoku.eventbus.events.auth.v1.user;
+option java_outer_classname = "UserProto";
+option java_package = "org.sudoku.sudoku.eventbus.events.auth.v1.user";
+
+message created {
+  string id = 1;
+  string email = 2;
+  string first_name = 3;
+  string last_name = 4;
+}

@@ -1,0 +1,195 @@
+#!/bin/bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+NODEUP_URL_AMD64=https://artifacts.k8s.io/binaries/kops/1.26.2/linux/amd64/nodeup,https://github.com/kubernetes/kops/releases/download/v1.26.2/nodeup-linux-amd64
+NODEUP_HASH_AMD64=6bd835965ad3b436dc7044757fa0a17c7f59d4d8d639a10692acea583d591447
+NODEUP_URL_ARM64=https://artifacts.k8s.io/binaries/kops/1.26.2/linux/arm64/nodeup,https://github.com/kubernetes/kops/releases/download/v1.26.2/nodeup-linux-arm64
+NODEUP_HASH_ARM64=bf3a4b0e9c5b4924c391191e830776a19b2d39d13750731809397b76f2c93726
+
+export AWS_REGION=eu-west-2
+
+
+
+
+sysctl -w net.core.rmem_max=16777216 || true
+sysctl -w net.core.wmem_max=16777216 || true
+sysctl -w net.ipv4.tcp_rmem='4096 87380 16777216' || true
+sysctl -w net.ipv4.tcp_wmem='4096 87380 16777216' || true
+
+
+function ensure-install-dir() {
+  INSTALL_DIR="/opt/kops"
+  # On ContainerOS, we install under /var/lib/toolbox; /opt is ro and noexec
+  if [[ -d /var/lib/toolbox ]]; then
+    INSTALL_DIR="/var/lib/toolbox/kops"
+  fi
+  mkdir -p ${INSTALL_DIR}/bin
+  mkdir -p ${INSTALL_DIR}/conf
+  cd ${INSTALL_DIR}
+}
+
+# Retry a download until we get it. args: name, sha, urls
+download-or-bust() {
+  local -r file="$1"
+  local -r hash="$2"
+  local -r urls=( $(split-commas "$3") )
+
+  if [[ -f "${file}" ]]; then
+    if ! validate-hash "${file}" "${hash}"; then
+      rm -f "${file}"
+    else
+      return 0
+    fi
+  fi
+
+  while true; do
+    for url in "${urls[@]}"; do
+      commands=(
+        "curl -f --compressed -Lo "${file}" --connect-timeout 20 --retry 6 --retry-delay 10"
+        "wget --compression=auto -O "${file}" --connect-timeout=20 --tries=6 --wait=10"
+        "curl -f -Lo "${file}" --connect-timeout 20 --retry 6 --retry-delay 10"
+        "wget -O "${file}" --connect-timeout=20 --tries=6 --wait=10"
+      )
+      for cmd in "${commands[@]}"; do
+        echo "Attempting download with: ${cmd} {url}"
+        if ! (${cmd} "${url}"); then
+          echo "== Download failed with ${cmd} =="
+          continue
+        fi
+        if ! validate-hash "${file}" "${hash}"; then
+          echo "== Hash validation of ${url} failed. Retrying. =="
+          rm -f "${file}"
+        else
+          echo "== Downloaded ${url} (SHA256 = ${hash}) =="
+          return 0
+        fi
+      done
+    done
+
+    echo "All downloads failed; sleeping before retrying"
+    sleep 60
+  done
+}
+
+validate-hash() {
+  local -r file="$1"
+  local -r expected="$2"
+  local actual
+
+  actual=$(sha256sum ${file} | awk '{ print $1 }') || true
+  if [[ "${actual}" != "${expected}" ]]; then
+    echo "== ${file} corrupted, hash ${actual} doesn't match expected ${expected} =="
+    return 1
+  fi
+}
+
+function split-commas() {
+  echo $1 | tr "," "\n"
+}
+
+function download-release() {
+  case "$(uname -m)" in
+  x86_64*|i?86_64*|amd64*)
+    NODEUP_URL="${NODEUP_URL_AMD64}"
+    NODEUP_HASH="${NODEUP_HASH_AMD64}"
+    ;;
+  aarch64*|arm64*)
+    NODEUP_URL="${NODEUP_URL_ARM64}"
+    NODEUP_HASH="${NODEUP_HASH_ARM64}"
+    ;;
+  *)
+    echo "Unsupported host arch: $(uname -m)" >&2
+    exit 1
+    ;;
+  esac
+
+  cd ${INSTALL_DIR}/bin
+  download-or-bust nodeup "${NODEUP_HASH}" "${NODEUP_URL}"
+
+  chmod +x nodeup
+
+  echo "Running nodeup"
+  # We can't run in the foreground because of https://github.com/docker/docker/issues/23793
+  ( cd ${INSTALL_DIR}/bin; ./nodeup --install-systemd-unit --conf=${INSTALL_DIR}/conf/kube_env.yaml --v=8  )
+}
+
+####################################################################################
+
+/bin/systemd-machine-id-setup || echo "failed to set up ensure machine-id configured"
+
+echo "== nodeup node config starting =="
+ensure-install-dir
+
+cat > conf/cluster_spec.yaml << '__EOF_CLUSTER_SPEC'
+cloudConfig:
+  manageStorageClasses: true
+containerRuntime: containerd
+containerd:
+  logLevel: info
+  runc:
+    version: 1.1.4
+  version: 1.6.18
+docker:
+  skipInstall: true
+kubeProxy:
+  clusterCIDR: 100.96.0.0/11
+  cpuRequest: 100m
+  image: registry.k8s.io/kube-proxy:v1.26.3@sha256:d89b6c6a8ecc920753df713b268b0d226f795135c4a0ecc5ce61660e623dd6da
+  logLevel: 2
+kubelet:
+  anonymousAuth: false
+  cgroupDriver: systemd
+  cgroupRoot: /
+  cloudProvider: external
+  clusterDNS: 100.64.0.10
+  clusterDomain: cluster.local
+  enableDebuggingHandlers: true
+  evictionHard: memory.available<100Mi,nodefs.available<10%,nodefs.inodesFree<5%,imagefs.available<10%,imagefs.inodesFree<5%
+  featureGates:
+    CSIMigrationAWS: "true"
+    InTreePluginAWSUnregister: "true"
+  kubeconfigPath: /var/lib/kubelet/kubeconfig
+  logLevel: 2
+  podInfraContainerImage: registry.k8s.io/pause:3.6@sha256:3d380ca8864549e74af4b29c10f9cb0956236dfb01c40ca076fb6c37253234db
+  podManifestPath: /etc/kubernetes/manifests
+  protectKernelDefaults: true
+  registerSchedulable: true
+  shutdownGracePeriod: 30s
+  shutdownGracePeriodCriticalPods: 10s
+
+__EOF_CLUSTER_SPEC
+
+cat > conf/kube_env.yaml << '__EOF_KUBE_ENV'
+CloudProvider: aws
+ConfigServer:
+  CACertificates: |
+    -----BEGIN CERTIFICATE-----
+    MIIC+DCCAeCgAwIBAgIMFs2j8XSNWdNipndTMA0GCSqGSIb3DQEBCwUAMBgxFjAU
+    BgNVBAMTDWt1YmVybmV0ZXMtY2EwHhcNMjIwMTIzMjIyODE3WhcNMzIwMTIzMjIy
+    ODE3WjAYMRYwFAYDVQQDEw1rdWJlcm5ldGVzLWNhMIIBIjANBgkqhkiG9w0BAQEF
+    AAOCAQ8AMIIBCgKCAQEAtNXKT9xIKiVImt7c2MAwAJ5L/12lxULHU5ppuSWFBq0q
+    GuBwCrKdeZlntl5GwTCvQTK1nXWJ4/lJ/j0tpyxvJnv71PBKTs4DULEBG6NlQvR7
+    6RFL9JXErcRznztPN0ZLKQi4WSiGXooT6du9t8AAIzhVcOz0x8ZX5DzMF4t+Aolx
+    9BhJ0ET99VYWO0xT4YzHwyHGlyw122NqaQ8YGyaFhtI3gP+RDlWJ3o/Mkl2PbWDk
+    VQ1moJgCnfzu9VJbL/LIhPXMc3pJ1YS0Fk7Gk3LNyZSVg4WpnIGLFSWrwHMa4snl
+    uNVudU0F+ZX20ouEkCAFcGdeK40TLK2iyZKMxw6rRQIDAQABo0IwQDAOBgNVHQ8B
+    Af8EBAMCAQYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUHXIgrK2amrdEsDv9
+    GGoIW4KeBokwDQYJKoZIhvcNAQELBQADggEBAIwd2jNdNv1mI8sTC9cqGJ8UsCfn
+    AAZ/DxlgHo0LexYWsHx1CPxQkufJdvRS9XTuPYW8tGLRY8xdhuNsjwGk2HP2meK5
+    hSuqg3CyQ3aCI2et1bqOQa5PjBALSHIJVgkXVaCtkDtyRL+9HupNuHaJnCIqQ23y
+    H/Z3+FagAAizoR2A39Lo/IB4ojuasg1bLoAiHP5YjPP7KVYgqP+SpZ/UaBFINtwG
+    Ez0D3AiPd3aw6CXbO+kvN7V0kl8AZeK9wiAkQlXRHBL0aoJ0sr+r18q5pJq4B8nP
+    ot0E4CLl6U1F9+X0ot5nQ96ydLA3L/0KiEolY0P41UYSGunu8Psn5DHPts8=
+    -----END CERTIFICATE-----
+  servers:
+  - https://kops-controller.internal.sudoku.org:3988/
+InstanceGroupName: nodes-eu-west-2a
+InstanceGroupRole: Node
+NodeupConfigHash: RzFk12AMEhYTkmZdUhdXwP7H2zFH0OaS+iU//X8Y3ig=
+
+__EOF_KUBE_ENV
+
+download-release
+echo "== nodeup node config done =="

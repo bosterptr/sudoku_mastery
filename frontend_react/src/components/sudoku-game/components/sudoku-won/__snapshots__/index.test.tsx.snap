@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SudokuWonScreen renders button component with required props 1`] = `
+<DocumentFragment>
+  .c5 {
+  align-items: center;
+  border-radius: 3px;
+  border: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 1.75;
+  text-decoration: none;
+  transition: color 0.2s ease,background-color 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,filter 0.2s ease;
+  user-select: none;
+  background-color: #1648ff;
+  color: #fff;
+  fill: #1648ff;
+  border: 2px solid transparent;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 0.875rem;
+  padding: 6px 8px;
+}
+
+.c5:focus:not {
+  outline: 0;
+}
+
+.c5:hover {
+  background-color: #1236bb;
+  color: #fff;
+}
+
+.c5:active {
+  background-color: transparent;
+  color: #1648ff;
+  box-shadow: 0px 4px 8px #181a1b33;
+}
+
+.c5>* {
+  stroke: #1648ff;
+  fill: #fff;
+}
+
+.c0 {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  bottom: 0;
+  justify-content: center;
+  left: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 999;
+}
+
+.c1 {
+  background-color: #ffffff;
+  border-radius: 5px;
+  left: 50%;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+
+.c2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.c3 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.c4 {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 15px;
+}
+
+<div
+    class="c0"
+  >
+    <div
+      class="c1"
+    >
+      <div
+        class="c2"
+      >
+        Congratulations, Puzzle Master!
+      </div>
+      <div
+        class="c3"
+      >
+        Your strategic thinking has triumphed!
+      </div>
+      <div
+        class="c4"
+      >
+        <button
+          class="c5"
+          color="rgba(0, 0, 0, .2)"
+          type="button"
+        >
+          New game
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

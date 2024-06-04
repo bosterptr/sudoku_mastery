@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title th:text="'Thank you for registering your ' + ${APP_NAME} + ' account.'">Thank you for registering your account.</title>
+  </head>
+  <body style="background-color: #1648ff">
+    <table
+      cellpadding="0"
+      cellspacing="0"
+      border="0"
+      align="center"
+      style="
+        width: 640px;
+        border-radius: 5px !important;
+        box-shadow: 0 4px 9px rgba(0, 0, 0, 0.05) !important;
+        background-color: #ffffff;
+        border: 1px solid #dddddd;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
+          'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        font-size: 14px;
+        line-height: 1.5;
+        color: #222222;
+        text-align: left;
+      "
+    >
+      <tbody>
+        <tr>
+          <td style="padding: 40px">
+            <table
+            role="presentation"
+            width="100%"
+            border="0"
+            cellpadding="0"
+            cellspacing="0">
+              <tbody>
+                <tr>
+                  <td
+                    style="
+                      font-family: Helvetica, Arial, sans-serif;
+                      font-size: 25px;
+                      text-align: center;
+                    "
+                    th:text="'Thank you for registering your ' + ${APP_NAME} + ' account.'">Thank you for registering your account.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 30px 0 0; font-size: medium">
+                    <p>
+                      <b>Hello</b>, 
+                      <br />To use our service, you must activate your account first.
+                      Please do it now by clicking on the button below. <br />The button is only valid for an hour.</b
+                      >
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table
+                      role="presentation"
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      style="min-width: 100%"
+                    >
+                      <tbody>
+                        <tr style="white-space: nowrap; background-color: #ffffff">
+                          <td
+                            style="
+                              white-space: normal;
+                              background-color: #ffffff;
+                              text-align: center;
+                              padding-top: 10px;
+                              padding-right: 25px;
+                              padding-bottom: 10x;
+                              padding-left: 25px;
+                            "
+                          >
+                            <table
+                              role="presentation"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              bgcolor="#1648ff"
+                              style="display: inline-block; border-radius: 5px"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td
+                                    style="
+                                      font-weight: bold;
+                                      font-family: Arial, Helvetica, sans-serf;
+                                      font-size: 16px;
+                                      line-height: 24px;
+                                      color: #ffffff;
+                                      padding: 10px 40px;
+                                      text-align: center;
+                                    "
+                                  >
+                                    <div>
+                                      <div>
+                                        <a
+                                        th:href="${urlWithToken}"
+                                        style="text-decoration: none; color: #ffffff"
+                                        target="_blank"
+                                        >
+                                          Activate Now
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

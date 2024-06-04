@@ -1,0 +1,414 @@
+{
+  "db": "PostgreSQL",
+  "2284aec581302ab61e47f7a64ce50df0d8109ee05945763f8ed1084c3e3fa5f5": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        },
+        {
+          "name": "body",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "difficulty!: Difficulty",
+          "ordinal": 2,
+          "type_info": {
+            "Custom": {
+              "kind": {
+                "Enum": [
+                  "easy",
+                  "normal",
+                  "hard",
+                  "extreme"
+                ]
+              },
+              "name": "sudoku_difficulty"
+            }
+          }
+        },
+        {
+          "name": "created_at",
+          "ordinal": 3,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "updated_at",
+          "ordinal": 4,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "user_id",
+          "ordinal": 5,
+          "type_info": "Uuid"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Uuid"
+        ]
+      }
+    },
+    "query": "SELECT id,body,difficulty AS \"difficulty!: Difficulty\",created_at,updated_at,user_id FROM sudokus WHERE id = $1"
+  },
+  "50293c2e54af11d4c2a553e29b671cef087a159c6ee7182d8ca929ecb748f3b7": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Uuid"
+        ]
+      }
+    },
+    "query": "DELETE FROM users WHERE id = $1"
+  },
+  "6b9a1a02a102f267e2cae58989ad387ebb09abf64e8daca95264fed6bd4c4c28": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": []
+      }
+    },
+    "query": "DELETE FROM sudokus;"
+  },
+  "95e3d7dc5e8af8373077f07e13360751db9faafe85a7919b7572777e344dea43": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        },
+        {
+          "name": "body",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "difficulty!: Difficulty",
+          "ordinal": 2,
+          "type_info": {
+            "Custom": {
+              "kind": {
+                "Enum": [
+                  "easy",
+                  "normal",
+                  "hard",
+                  "extreme"
+                ]
+              },
+              "name": "sudoku_difficulty"
+            }
+          }
+        },
+        {
+          "name": "created_at",
+          "ordinal": 3,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "updated_at",
+          "ordinal": 4,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "user_id",
+          "ordinal": 5,
+          "type_info": "Uuid"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Int8",
+          "Int8"
+        ]
+      }
+    },
+    "query": "SELECT id,body,difficulty AS \"difficulty!: Difficulty\",created_at,updated_at,user_id FROM sudokus LIMIT $1 OFFSET $2"
+  },
+  "afeaeb3fe610d54e6e3f27e69b926d01a341c7d92d827aff5bc72993d970d539": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": []
+      }
+    },
+    "query": "DELETE FROM users;"
+  },
+  "b03e4c305075359373afba7a3ec9ba567a8c66d598e3515b3d460e17744b28db": {
+    "describe": {
+      "columns": [
+        {
+          "name": "total",
+          "ordinal": 0,
+          "type_info": "Int8"
+        }
+      ],
+      "nullable": [
+        null
+      ],
+      "parameters": {
+        "Left": []
+      }
+    },
+    "query": "SELECT COUNT(*) as total FROM sudokus"
+  },
+  "e0d3b8e39035e518b928bd58e5038d426092a64a0fea68a10265957dabeb4879": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Uuid"
+        ]
+      }
+    },
+    "query": "DELETE FROM sudokus WHERE id = $1 AND user_id = $2"
+  },
+  "e358d61ccf2420af5a0dab0d95da97a6769ee36fb4a1677ef64496e81aa1837b": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        },
+        {
+          "name": "body",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "difficulty!: Difficulty",
+          "ordinal": 2,
+          "type_info": {
+            "Custom": {
+              "kind": {
+                "Enum": [
+                  "easy",
+                  "normal",
+                  "hard",
+                  "extreme"
+                ]
+              },
+              "name": "sudoku_difficulty"
+            }
+          }
+        },
+        {
+          "name": "created_at",
+          "ordinal": 3,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "updated_at",
+          "ordinal": 4,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "user_id",
+          "ordinal": 5,
+          "type_info": "Uuid"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "\n            SELECT id, body, difficulty AS \"difficulty!: Difficulty\", created_at, updated_at, user_id \n            FROM sudokus \n            WHERE difficulty = ($1::text)::sudoku_difficulty\n            ORDER BY RANDOM() \n            LIMIT 1\n            "
+  },
+  "fb5c4f352aab4e0cc6ae301a4714eeb61fa616e630ecf96d2da6b0157108f7ee": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        },
+        {
+          "name": "body",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "difficulty!: Difficulty",
+          "ordinal": 2,
+          "type_info": {
+            "Custom": {
+              "kind": {
+                "Enum": [
+                  "easy",
+                  "normal",
+                  "hard",
+                  "extreme"
+                ]
+              },
+              "name": "sudoku_difficulty"
+            }
+          }
+        },
+        {
+          "name": "created_at",
+          "ordinal": 3,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "updated_at",
+          "ordinal": 4,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "user_id",
+          "ordinal": 5,
+          "type_info": "Uuid"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text",
+          {
+            "Custom": {
+              "kind": {
+                "Enum": [
+                  "easy",
+                  "normal",
+                  "hard",
+                  "extreme"
+                ]
+              },
+              "name": "sudoku_difficulty"
+            }
+          },
+          "Uuid"
+        ]
+      }
+    },
+    "query": "INSERT INTO sudokus (body,difficulty,user_id) VALUES ($1, $2, $3) RETURNING id,body,difficulty AS \"difficulty!: Difficulty\",created_at,updated_at,user_id"
+  },
+  "fd9b6f8a66dbb6353d2aa48339c1a37f9b37fb5c2582b7a5300ac5b9249a7262": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        }
+      ],
+      "nullable": [
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Uuid"
+        ]
+      }
+    },
+    "query": "INSERT INTO users (id) VALUES ($1) RETURNING id"
+  },
+  "fed78ae94732dd54c5263ad08f5faa2116a3c88e17bfa9396784466dab370975": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        },
+        {
+          "name": "body",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "difficulty!: Difficulty",
+          "ordinal": 2,
+          "type_info": {
+            "Custom": {
+              "kind": {
+                "Enum": [
+                  "easy",
+                  "normal",
+                  "hard",
+                  "extreme"
+                ]
+              },
+              "name": "sudoku_difficulty"
+            }
+          }
+        },
+        {
+          "name": "created_at",
+          "ordinal": 3,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "updated_at",
+          "ordinal": 4,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "user_id",
+          "ordinal": 5,
+          "type_info": "Uuid"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Text",
+          "Uuid",
+          "Uuid"
+        ]
+      }
+    },
+    "query": "UPDATE sudokus SET body = $1, difficulty = ($2::text)::sudoku_difficulty WHERE user_id = $3 AND id = $4  RETURNING id,body,difficulty AS \"difficulty!: Difficulty\",created_at,updated_at,user_id"
+  }
+}

@@ -1,0 +1,60 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+          "type": "chrome",
+          "request": "launch",
+          "name": "Launch Chrome against localhost (80)",
+          "url": "http://localhost:80",
+          "webRoot": "${workspaceFolder}"
+      },
+        {
+          "type": "chrome",
+          "request": "launch",
+          "name": "Launch Chrome against localhost (storybook)",
+          "url": "http://localhost:6006",
+          "webRoot": "${workspaceFolder}"
+        },
+        {
+          "name": "Launch Firefox",
+          "type": "firefox",
+          "request": "launch",
+          "url": "https://localhost:4200",
+          "webRoot": "${workspaceFolder}/client"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest All",
+            "program": "${workspaceFolder}/node_modules/.bin/jest",
+            "args": ["--runInBand"],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "windows": {
+              "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+            },
+          },
+          {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest Current File",
+            "program": "${workspaceFolder}/node_modules/.bin/jest",
+            "args": ["${relativeFile}"],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "windows": {
+              "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+            },
+          }
+    ]
+}

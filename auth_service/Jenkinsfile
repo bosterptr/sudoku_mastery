@@ -1,0 +1,103 @@
+pipeline {
+  agent {
+    kubernetes {
+      defaultContainer 'jnlp'
+      yamlFile 'build.yaml'
+    }
+  }
+  environment {
+    IMAGE_NAME = 'sudoku/authentication_service'
+    CI = 'true'
+    DOCKER_USER     = credentials('DOCKER_USER')
+    DOCKER_PASSWORD = credentials('DOCKER_PASSWORD')
+  }
+  stages {
+    stage('Build staging image') {
+      steps {
+        container('docker') {
+          sh "docker build -t $IMAGE_NAME-staging:$BUILD_ID --no-cache ."
+        }
+      }
+    }
+    stage('Run tests') {
+      steps {
+        container('kubectl') {
+          sh '''
+            kubectl get pods --all-namespaces
+          '''
+        }
+      }
+    }
+    stage('Image Release') {
+      when {
+        expression { env.BRANCH_NAME == 'master' }
+      }
+      steps {
+        container('docker') {
+          sh "docker build -t $IMAGE_NAME:$BUILD_ID --no-cache ."
+          sh "docker login -u $DOCKER_USER -p $DOCKER_PASSWORD"
+          sh "docker push $IMAGE_NAME:$BUILD_ID"
+        }
+      }
+    }
+    stage('Staging Deployment') {
+      when {
+        expression { env.BRANCH_NAME == 'master' }
+      }
+
+      environment {
+        RELEASE_NAME = 'auth_service-staging'
+      }
+
+      steps {
+        container('kubectl') {
+          sh '''
+            kubectl delete namespace staging
+            kubectl create namespace staging
+          '''
+        }
+        container('helm') {
+          sh '''
+            helm upgrade --install --namespace staging $RELEASE_NAME ./helm
+          '''
+        }
+        container('kubectl') {
+          sh '''
+            kubectl delete namespace staging
+          '''
+        }
+      }
+    }
+    stage('Deploy to Production?') {
+      when {
+        expression { env.BRANCH_NAME == 'master' }
+      }
+
+      steps {
+        // Prevent any older builds from deploying to production
+        milestone(1)
+        input 'Deploy to Production?'
+        milestone(2)
+      }
+    }
+    stage('Production Deployment') {
+      when {
+        expression { env.BRANCH_NAME == 'master' }
+      }
+
+      environment {
+        RELEASE_NAME = 'api-production'
+      }
+
+      steps {
+        container('helm') {
+          sh '''
+            . ./helm/helm-init.sh
+            helm upgrade --install --namespace production $RELEASE_NAME ./helm/api
+          '''
+        }
+      }
+    }
+    
+  }
+}

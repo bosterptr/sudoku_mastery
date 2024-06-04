@@ -1,0 +1,9 @@
+syntax = "proto3";
+package org.sudoku.sudoku.eventbus.events.auth.v1.user;
+option go_package = "user";
+
+message created_not_activated {
+  string email = 1;
+  string display_name = 2;
+  string activation_token = 3;
+}

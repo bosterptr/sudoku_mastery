@@ -1,0 +1,231 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SudokuNumpad renders component with all props 1`] = `
+<DocumentFragment>
+  .c1 {
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 0;
+  color: #1648ff;
+  cursor: pointer;
+  flex-basis: 32%;
+  font-size: 3.2em;
+  font-weight: 700;
+  height: auto;
+  margin: 1%;
+  padding: 0px;
+  text-align: center;
+  transition: background-color 0.1s ease-in-out,color 0.1s ease-in-out;
+}
+
+.c1:hover {
+  background-color: #f0f4f4;
+  color: #1648ff;
+}
+
+.c1:active {
+  background-color: #1648ff;
+  color: #fff;
+}
+
+.c0 {
+  display: flex;
+  flex-wrap: wrap;
+  height: 300px;
+  width: 300px;
+}
+
+@media (max-width: 400px) {
+  .c1 {
+    font-size: 2.4em;
+  }
+}
+
+@media (min-width: 801px) {
+  .c1:nth-child(3n-2) {
+    margin-left: 0;
+  }
+
+  .c1:nth-child(3n) {
+    margin-right: 0;
+  }
+
+  .c1:first-child,
+  .c1:nth-child(2),
+  .c1:nth-child(3) {
+    margin-top: 0;
+  }
+
+  .c1:nth-child(7),
+  .c1:nth-child(8),
+  .c1:nth-child(9) {
+    margin-bottom: 0;
+  }
+}
+
+<div
+    class="c0 x"
+  >
+    <button
+      class="c1"
+    >
+      1
+    </button>
+    <button
+      class="c1"
+    >
+      2
+    </button>
+    <button
+      class="c1"
+    >
+      3
+    </button>
+    <button
+      class="c1"
+    >
+      4
+    </button>
+    <button
+      class="c1"
+    >
+      5
+    </button>
+    <button
+      class="c1"
+    >
+      6
+    </button>
+    <button
+      class="c1"
+    >
+      7
+    </button>
+    <button
+      class="c1"
+    >
+      8
+    </button>
+    <button
+      class="c1"
+    >
+      9
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SudokuNumpad renders component with required props 1`] = `
+<DocumentFragment>
+  .c1 {
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 0;
+  color: #1648ff;
+  cursor: pointer;
+  flex-basis: 32%;
+  font-size: 3.2em;
+  font-weight: 700;
+  height: auto;
+  margin: 1%;
+  padding: 0px;
+  text-align: center;
+  transition: background-color 0.1s ease-in-out,color 0.1s ease-in-out;
+}
+
+.c1:hover {
+  background-color: #f0f4f4;
+  color: #1648ff;
+}
+
+.c1:active {
+  background-color: #1648ff;
+  color: #fff;
+}
+
+.c0 {
+  display: flex;
+  flex-wrap: wrap;
+  height: 300px;
+  width: 300px;
+}
+
+@media (max-width: 400px) {
+  .c1 {
+    font-size: 2.4em;
+  }
+}
+
+@media (min-width: 801px) {
+  .c1:nth-child(3n-2) {
+    margin-left: 0;
+  }
+
+  .c1:nth-child(3n) {
+    margin-right: 0;
+  }
+
+  .c1:first-child,
+  .c1:nth-child(2),
+  .c1:nth-child(3) {
+    margin-top: 0;
+  }
+
+  .c1:nth-child(7),
+  .c1:nth-child(8),
+  .c1:nth-child(9) {
+    margin-bottom: 0;
+  }
+}
+
+<div
+    class="c0"
+  >
+    <button
+      class="c1"
+    >
+      1
+    </button>
+    <button
+      class="c1"
+    >
+      2
+    </button>
+    <button
+      class="c1"
+    >
+      3
+    </button>
+    <button
+      class="c1"
+    >
+      4
+    </button>
+    <button
+      class="c1"
+    >
+      5
+    </button>
+    <button
+      class="c1"
+    >
+      6
+    </button>
+    <button
+      class="c1"
+    >
+      7
+    </button>
+    <button
+      class="c1"
+    >
+      8
+    </button>
+    <button
+      class="c1"
+    >
+      9
+    </button>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserMenu when the user is authenticated renders correctly and matches snapshot 1`] = `
+<DocumentFragment>
+  .c1 {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.c2 {
+  background: #1648ff;
+  border-radius: 1rem;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  margin: auto 10px;
+  padding: 0.9rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.c2:hover {
+  border-radius: 2rem;
+  color: rgb(229, 229, 229);
+}
+
+.c0 {
+  z-index: 1000;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+<nav
+    class="c0"
+  >
+    <div
+      class="c1"
+    >
+      <a
+        class="c2"
+        href="/auth/signin"
+      >
+        Sign in
+      </a>
+    </div>
+  </nav>
+</DocumentFragment>
+`;

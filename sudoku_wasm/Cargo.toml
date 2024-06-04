@@ -1,0 +1,88 @@
+cargo-features = ["profile-rustflags"]
+[package]
+name = "sudoku_wasm"
+version = "0.1.0"
+edition = "2021"
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+keywords = ["clippy", "lint", "plugin"]
+
+[lib]
+crate-type = ["cdylib","rlib"]
+
+[features]
+default = []
+# default = ["wee_alloc"]
+# default = ["console_error_panic_hook"]
+# default = ["console_error_panic_hook","wee_alloc"]
+
+
+[dependencies]
+wasm-bindgen = "0.2.87"
+sudoku = "0.7.0"
+
+# # The `console_error_panic_hook` crate provides better debugging of panics by
+# # logging them with `console.error`. This is great for development, but requires
+# # all the `std::fmt` and `std::panicking` infrastructure, so isn't great for
+# # code size when deploying.
+console_error_panic_hook = { version = "0.1.1", optional = true }
+
+# `wee_alloc` is a tiny allocator for wasm that is only ~1K in code size
+# compared to the default allocator's ~10K. It is slower than the default
+# allocator, however.
+#
+# Unfortunately, `wee_alloc` requires nightly Rust when targeting wasm for now.
+wee_alloc = { version = "0.4.5", optional = true }
+num = "0.4.1"
+libm = "0.2.8"
+nalgebra = {version = "0.32.3", features = ["libm"]}
+approx = "0.5.1"
+web-sys = {version = "0.3.66", features = ["console"]}
+arrayvec = {version = "0.7.4", default-features = false}
+num-traits = "0.2.17"
+image = "0.24.7"
+imageproc = "0.23.0"
+
+[dev-dependencies]
+num-traits = "0.2.17"
+wasm-bindgen-test = "0.3.37"
+assert_approx_eq = "1.1.0"
+lazy_static = "1.4.0"
+criterion = "0.5.1"
+
+[profile.release]
+opt-level = 3
+strip=false
+panic="abort"
+lto="fat"
+codegen-units=1
+debug-assertions = false
+rpath = false
+# target_family="wasm"
+debug = true
+rustflags = ["-Zlocation-detail=none"]
+
+[profile.bench]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+debug = false
+debug-assertions = false
+rpath = false
+
+# [dependencies.wasm-snip]
+# # Do not build the executable.
+# default-features = false
+
+# [package.metadata.wasm-pack.profile.release]
+# wasm-opt = ['-g', '-O']
+
+# [package.metadata.wasm-pack.profile.release.wasm-bindgen]
+# debug-js-glue = true
+# demangle-name-section = true
+# dwarf-debug-info = true
+
+[[bench]]
+name = "fixed"
+harness = false
+

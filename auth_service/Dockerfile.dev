@@ -1,0 +1,8 @@
+FROM node:15.9.0-alpine
+WORKDIR /work
+COPY --chown=node:node ./package*.json ./
+RUN npm audit
+RUN npm ci
+RUN npm cache clean --force
+COPY --chown=node:node ./ ./ 
+RUN npm build

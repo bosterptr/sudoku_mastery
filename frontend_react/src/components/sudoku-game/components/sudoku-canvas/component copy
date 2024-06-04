@@ -1,0 +1,864 @@
+import styled from 'styled-components';
+import React, { useEffect, useRef, useState } from 'react';
+import useEventListener from 'app/common/hooks/useEventListener';
+
+const CANVAS_SIZE = 500;
+const COLOR_BACKGROUND = '#fff';
+const COLOR_THIN_BORDER = '#BFC6D4';
+const COLOR_DARK = '#344861';
+const COLOR_BLUE = '#325aaf';
+const COLOR_RED = '#e55c6c';
+const COLOR_NEIGHBOR = '#e2ebf3';
+const COLOR_SAME_VAL = '#c3d7ea';
+const COLOR_CONFLICT = '#f7cfd6';
+const COLOR_SELECTED = '#bbdefb';
+const COLOR_NOTES = '#6e7c8c';
+const COLOR_LIGHT_BLUE = '#b2dffe';
+const COLOR_DARK_SMART = '#10151D';
+const COLOR_LIGHT_SMART = '#3E3F42';
+const COLOR_GREEN = '#34c759';
+const COLOR_RED_SMART = '#ff2d55';
+const COLOR_YELLOW_SMART = '#FC0';
+const COLOR_BLUE_SMART = '#b2dffe';
+const COLOR_NOTE_DARK = '#322929';
+const LOADING_CLASS = 'loading';
+const STANDARD_WIN_CLASS = 'win';
+const BLOCKED_CLASS = 'blocked';
+
+interface Isizes {
+  block: number;
+  cell: number;
+  contextSize: number;
+  outer: number;
+  pixelRatio: number;
+  thin: number;
+  wrapperSize: number;
+}
+interface ICoord {
+  x: number;
+  y: number;
+  cubeId: string;
+  row: number;
+  col: number;
+}
+
+const getsizes = (pixelRatio: number, clientWidth: number): Isizes => {
+  const canvasSize = CANVAS_SIZE * pixelRatio;
+  const doublePixelRatio = 2 * pixelRatio;
+  return {
+    thin: 0.75 * pixelRatio,
+    outer: doublePixelRatio,
+    pixelRatio,
+    contextSize: canvasSize,
+    cell: (canvasSize - 2 * doublePixelRatio) / 9,
+    block: (canvasSize - doublePixelRatio) / 3,
+    wrapperSize: clientWidth,
+  };
+};
+interface ICurrentGame {
+  id: number;
+  mission: string;
+  solution: string;
+  win_rate: number;
+}
+const CURRENT_GAME: ICurrentGame = {
+  id: 379,
+  mission: '308015000409700005561008000904000530050001049000000800030007006700390200000080700',
+  solution: '378415962429763185561928374984672531257831649613549827832157496745396218196284753',
+  win_rate: 67.06,
+};
+const values = [
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 9,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 1,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 3,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 2,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 3,
+    editable: false,
+    index: 11,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 9,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 7,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 9,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 5,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 3,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 8,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 6,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 7,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 4,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 3,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 6,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 2,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 5,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 1,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 6,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 8,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 7,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 9,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 3,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 9,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 5,
+    editable: false,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+  {
+    val: 0,
+    editable: true,
+    conflict: false,
+    mistake: false,
+  },
+];
+
+const BOARD_NUMBERS = [
+  'M27.218 39.774V15.84h-.241c-.668.371-6.068 4.212-6.977 4.806v-2.69c.575-.372 6.123-4.306 7.218-4.955h2.523v26.774h-2.523z',
+  'M18 20.941c.037-4.62 3.563-7.941 8.405-7.941 4.713 0 8.313 3.229 8.313 7.44 0 2.784-1.28 4.955-5.678 9.649l-7.236 7.719v.222h13.582v2.301H18.148V38.55L27.5 28.438c3.73-4.008 4.676-5.604 4.676-7.905 0-2.987-2.542-5.306-5.826-5.306-3.452 0-5.845 2.337-5.882 5.714v.019H18v-.019z',
+  'M23.063 27.271v-2.189H26.2c3.451 0 5.845-2.115 5.845-5.177 0-2.913-2.394-5.01-5.715-5.01-3.322 0-5.66 1.967-5.92 5.01h-2.467c.297-4.379 3.618-7.236 8.48-7.236 4.564 0 8.2 3.08 8.2 6.94 0 3.228-1.855 5.584-4.972 6.27v.242c3.822.427 6.197 2.969 6.197 6.643 0 4.397-4.063 7.793-9.314 7.793-5.177 0-8.98-3.08-9.148-7.404h2.45c.222 3.006 3.005 5.177 6.68 5.177 3.877 0 6.716-2.393 6.716-5.622 0-3.358-2.635-5.437-6.92-5.437h-3.248z',
+  'M30.021 40v-6.049H16.57v-2.32c2.394-4.044 5.696-9.184 12.283-18.443h3.637v18.48h4.008v2.283h-4.008V40H30.02zm-10.799-8.48v.168h10.8V15.619h-.168c-5.102 6.958-7.756 11.114-10.632 15.902z',
+  'M26.85 40.631c-4.86 0-8.572-3.117-8.85-7.477h2.486c.279 3.005 3.006 5.232 6.383 5.232 3.915 0 6.717-2.802 6.717-6.735 0-3.934-2.802-6.736-6.661-6.736-2.635 0-4.973 1.28-6.105 3.34h-2.412L19.855 13.3h14.603v2.282H21.859l-.89 9.76h.241c1.28-1.67 3.507-2.635 6.123-2.635 5.14 0 8.795 3.693 8.795 8.87 0 5.306-3.84 9.054-9.277 9.054z',
+  'M26.923 40.87c-3.619 0-6.476-1.8-8.146-5.103-1.187-2.097-1.781-4.862-1.781-8.257 0-9.11 3.748-14.51 10.112-14.51 4.435 0 7.793 2.672 8.554 6.847h-2.598c-.668-2.784-3.006-4.565-5.993-4.565-4.806 0-7.552 4.49-7.607 12.432h.222c1.17-3.006 4.12-4.936 7.626-4.936 5.084 0 8.832 3.785 8.832 8.907 0 5.325-3.878 9.184-9.221 9.184zm-.038-2.246c3.804 0 6.699-2.969 6.699-6.847 0-3.952-2.802-6.79-6.68-6.79-3.822 0-6.772 2.857-6.772 6.605 0 3.99 2.931 7.032 6.753 7.032z',
+  'm20.668 40.574 12.376-24.288v-.204H18.2V13.8h17.441v2.375l-12.264 24.4z',
+  'M26.981 40.888c-5.603 0-9.481-3.192-9.481-7.775 0-3.47 2.338-6.216 5.845-6.846v-.223c-2.913-.687-4.806-3.024-4.806-5.956 0-4.138 3.507-7.088 8.442-7.088 4.936 0 8.443 2.932 8.443 7.088 0 2.913-1.874 5.25-4.787 5.956v.223c3.488.63 5.844 3.377 5.844 6.846 0 4.602-3.877 7.775-9.5 7.775zm0-2.19c4.101 0 6.94-2.356 6.94-5.752 0-3.321-2.82-5.585-6.94-5.585-4.1 0-6.92 2.283-6.92 5.585 0 3.396 2.82 5.752 6.92 5.752zm0-13.526c3.526 0 5.938-1.967 5.938-4.88 0-3.024-2.412-5.103-5.938-5.103-3.525 0-5.937 2.079-5.937 5.103 0 2.895 2.412 4.88 5.937 4.88z',
+  'M26.436 40.87c-4.509 0-7.793-2.691-8.554-6.829h2.598c.65 2.728 2.913 4.564 5.993 4.564 4.732 0 7.422-4.323 7.608-11.819.018-.185-.093-.427-.112-.612h-.111c-1.15 2.95-4.12 4.917-7.626 4.917-5.121 0-8.832-3.767-8.832-8.87 0-5.325 3.86-9.221 9.222-9.221 3.618 0 6.475 1.818 8.145 5.14 1.188 2.078 1.781 4.824 1.781 8.238 0 9.073-3.71 14.491-10.112 14.491zm.204-11.987c3.841 0 6.773-2.895 6.773-6.587 0-3.97-2.913-7.05-6.754-7.05-3.822 0-6.698 2.986-6.698 6.901 0 3.878 2.746 6.736 6.68 6.736z',
+];
+
+const getCoords = (sizes: Isizes): ICoord[] => {
+  const { outer, cell } = sizes;
+  const coords: ICoord[] = [];
+  for (let x = 0; x < 9; x += 1)
+    for (let y = 0; y < 9; y += 1)
+      coords.push({
+        x: outer + cell * y,
+        y: outer + cell * x,
+        cubeId: `${Math.floor(x / 3)}${Math.floor(y / 3)}`,
+        row: x,
+        col: y,
+      });
+  return coords;
+};
+
+export const SudokuCanvas = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const context = useRef<CanvasRenderingContext2D | null>(null);
+  const coords = useRef<ICoord[] | null>(null);
+  const [currentGame, setCurrentGame] = useState<ICurrentGame>(CURRENT_GAME);
+  const [selectedCell, setSelectedCell] = useState<number | null>(2);
+  useEventListener('keypress');
+  const pixelRatio =
+    window.devicePixelRatio && window.devicePixelRatio > 2 ? 2 * window.devicePixelRatio : 4;
+  const clearCanvas = () => {
+    if (!context.current || !wrapperRef.current) throw new Error('');
+    const sizes = getsizes(pixelRatio, wrapperRef.current.clientWidth);
+    context.current.clearRect(0, 0, sizes.contextSize, sizes.contextSize);
+    context.current.fillStyle = COLOR_BACKGROUND;
+    context.current.fillRect(0, 0, sizes.contextSize, sizes.contextSize);
+  };
+  const drawGrid = () => {
+    if (!context.current || !coords.current || !wrapperRef.current) throw new Error('');
+    const sizes = getsizes(pixelRatio, wrapperRef.current.clientWidth);
+    context.current.strokeStyle = COLOR_THIN_BORDER;
+    context.current.lineWidth = sizes.thin;
+    for (let a = 0; a < 81; a += 1) {
+      context.current.strokeRect(coords.current[a].x, coords.current[a].y, sizes.cell, sizes.cell);
+    }
+    context.current.strokeStyle = COLOR_DARK;
+    context.current.lineWidth = sizes.outer;
+    for (let s = 0; s < 3; s += 1)
+      for (let c = 0; c < 3; c += 1)
+        context.current.strokeRect(
+          sizes.outer / 2 + sizes.block * s,
+          sizes.outer / 2 + sizes.block * c,
+          sizes.block,
+          sizes.block,
+        );
+  };
+  const handleClickCanvas: React.MouseEventHandler<HTMLDivElement> = (event) => {
+    if (!context.current || !coords.current || !wrapperRef.current) throw new Error('');
+    const canvasRect = wrapperRef.current.getBoundingClientRect();
+    const sizes = getsizes(pixelRatio, wrapperRef.current.clientWidth);
+    const sudokuRectangleSize = (sizes.wrapperSize * sizes.pixelRatio) / 9;
+    const cords = {
+      x: sizes.pixelRatio * (event.clientX - canvasRect.left),
+      y: sizes.pixelRatio * (event.clientY - canvasRect.top),
+    };
+    const index =
+      Math.floor(Math.abs(cords.x) / sudokuRectangleSize) +
+      9 * Math.floor(Math.abs(cords.y) / sudokuRectangleSize);
+    setSelectedCell(index);
+  };
+  const drawOuterBorders = () => {
+    if (!context.current || !wrapperRef.current) throw new Error('');
+    const sizes = getsizes(pixelRatio, wrapperRef.current.clientWidth);
+    const { outer, block } = sizes;
+    context.current.strokeStyle = COLOR_DARK_SMART;
+    context.current.lineWidth = outer;
+    for (let i = 0; i < 3; i += 1)
+      for (let r = 0; r < 3; r += 1)
+        context.current.strokeRect(
+          outer / 2 + block * i + 5 * pixelRatio,
+          outer / 2 + block * r + 5 * pixelRatio,
+          block,
+          block,
+        );
+  };
+  const drawSelectedCell = () => {
+    if (!context.current || !wrapperRef.current || !coords.current) throw new Error('');
+    const { cell } = getsizes(pixelRatio, wrapperRef.current.clientWidth);
+    context.current.save();
+    for (let cellIndex = 0; cellIndex < 81; cellIndex += 1) {
+      if (
+        selectedCell != null &&
+        cellIndex !== selectedCell &&
+        !(
+          coords.current[selectedCell].row !== coords.current[cellIndex].row &&
+          coords.current[selectedCell].col !== coords.current[cellIndex].col &&
+          coords.current[selectedCell].cubeId !== coords.current[cellIndex].cubeId
+        )
+      ) {
+        // Condition 1
+        context.current.fillStyle = COLOR_NEIGHBOR;
+        context.current.fillRect(
+          coords.current[cellIndex].x,
+          coords.current[cellIndex].y,
+          cell,
+          cell,
+        );
+      } else if (
+        selectedCell != null &&
+        values[selectedCell].val &&
+        values[selectedCell].val === values[cellIndex].val
+      ) {
+        // Condition 2
+        context.current.fillStyle = COLOR_SAME_VAL;
+        context.current.fillRect(
+          coords.current[cellIndex].x,
+          coords.current[cellIndex].y,
+          cell,
+          cell,
+        );
+      } else if (values[cellIndex].conflict) {
+        // Condition 3
+        context.current.fillStyle = COLOR_CONFLICT;
+        context.current.fillRect(
+          coords.current[cellIndex].x,
+          coords.current[cellIndex].y,
+          cell,
+          cell,
+        );
+      }
+    }
+    if (selectedCell) {
+      context.current.fillStyle = COLOR_SELECTED;
+      context.current.fillRect(
+        coords.current[selectedCell].x,
+        coords.current[selectedCell].y,
+        cell,
+        cell,
+      );
+      context.current.restore();
+    }
+    // // Additional code outside the conditions
+    // context.current.fillStyle = COLOR_SELECTED;
+    // context.current.fillRect(coords[selectedCell].x, coords[selectedCell].y, cell, cell);
+    // context.current.restore();
+    // (coords[selectedCell].row != coords[cell].row &&
+    //   coords[selectedCell].col != coords[cell].col &&
+    //   coords[selectedCell].cubeId != coords[cell].cubeId) ||
+    //   ((context.current.fillStyle = COLOR_NEIGHBOR),
+    //   context.current.fillRect(coords[cell].x, coords[cell].y, cell, cell)),
+    //   values[selectedCell].val &&
+    //     values[selectedCell].val === values[cell].val &&
+    //     ((context.current.fillStyle = COLOR_SAME_VAL),
+    //     context.current.fillRect(coords[cell].x, coords[cell].y, cell, cell)),
+    //   (values[cell].conflict || (values[cell].mistake && !mode)) &&
+    //     ((context.current.fillStyle = COLOR_CONFLICT),
+    //     context.fillRect(coords[cell].x, coords[cell].y, cell, cell));
+    // (context.current.fillStyle = COLOR_SELECTED),
+    //   context.current.fillRect(coords[selectedCell].x, coords[selectedCell].y, cell, cell),
+    //   context.current.restore();
+  };
+  //   const drawBoardNotes = () => {
+  //     if (!context.current || !wrapperRef.current || !coords.current) throw new Error('');
+  //     var t = store.state
+  //       , n = t.mode
+  //       , i = sizes.cell
+  //       , o = n === u.f.killer;
+  //     if (notes && notes.length) {
+  //         context.save();
+  //         for (var a = 0; a < 81; a++)
+  //             if (notes[a])
+  //                 for (var s = 0; s < 9; s++)
+  //                     if (notes[a][s]) {
+  //                         context.save(),
+  //                         context.scale(1, 1),
+  //                         context.fillStyle = COLOR_NOTES;
+  //                         var c = .75
+  //                           , l = .85
+  //                           , d = .7
+  //                           , h = 0;
+  //                         o && (c = .65,
+  //                         l = .6,
+  //                         d = .5,
+  //                         h = 3);
+  //                         var f = new Path2D(BOARD_NOTES[s])
+  //                           , p = i * (2 * c) / 82
+  //                           , v = i * l;
+  //                         context.scale(p, p),
+  //                         context.translate((i - v) / p * d, (i - v) / p * d + h),
+  //                         context.translate(coords[a].x / p + ([0, 3, 6].includes(s) ? 0 : [1, 4, 7].includes(s) ? 1 : 2) * (v / 3 / p), coords[a].y / p + Math.floor(s / 3) * (v / 3 / p)),
+  //                         context.fill(f),
+  //                         context.restore()
+  //                     }
+  //         context.restore()
+  //     }
+  // }
+  const drawBoardNumbers = () => {
+    if (!context.current || !wrapperRef.current || !coords.current) throw new Error('');
+    const sizes = getsizes(pixelRatio, wrapperRef.current.clientWidth);
+    const mode = 'classic';
+    const i = (2 * sizes.cell) / 110;
+    for (let cell = 0; cell < 81; cell += 1) {
+      if (values[cell].val) {
+        context.current.save();
+        context.current.scale(1, 1);
+        context.current.fillStyle =
+          (values[cell].editable && mode) || (!values[cell].editable && !mode)
+            ? COLOR_BLUE
+            : COLOR_DARK;
+        values[cell].editable && values[cell].mistake && (context.current.fillStyle = COLOR_RED);
+        const a = new Path2D(BOARD_NUMBERS[values[cell].val - 1]);
+        context.current.scale(i, i);
+        context.current.translate(coords.current[cell].x / i, coords.current[cell].y / i);
+        context.current.fill(a);
+        context.current.restore();
+      }
+    }
+  };
+  //   const drawCells = function(t) {
+  //     if () {
+  //         for (var o = sizes.cell, s = !0, c = 0; c < animatedCells.length; c++)
+  //             for (var u = animatedCells[c], l = 0; l < u.length; l++)
+  //                     if (t >= u[l].delay) {
+  //                         f = Object(a.b)((t - u[l].delay) / r);
+  //                         u[l].opacity = f,
+  //                         f <= 0 && (u[l].done = !0),
+  //                         context.current.fillStyle = "rgba(176, 195, 216, " + u[l].opacity + ")",
+  //                         context.current.fillRect(u[l].x, u[l].y, o, o)
+  //                     }
+  //                     u[l].done || (s = !1)
+
+  //         return s
+  //     }
+  // }
+  const paintBoard = () => {
+    if (currentGame) {
+      // const e = Date.now() - startTime;
+      // const n = store.state;
+      // const i = n.pausedGame;
+      // const r = n.mode;
+      // const o = n.finished;
+      // const s = n.difficulty;
+      // if (
+      //   (r !== u.f.killer || assetsLoaded || loadKillerAssets(), clearCanvas(), !i)
+      // ) {
+      //   if (
+      //     (store.state.smartHint || (!r && currentGame.finished) || drawSelectedCell(),
+      //     animatedCells.length)
+      //   )
+      // drawBoardNotes();
+      drawSelectedCell();
+      drawGrid();
+      drawBoardNumbers();
+      // }
+      // animatedCells.length &&
+      //   (animationFrame = window.requestAnimationFrame(paintBoard.bind(this)));
+    }
+  };
+  t.prototype.handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key >= '0' && event.key <= '9') {
+      // Handle digit keypress here
+      console.log(`Digit pressed: ${event.key}`);
+    }
+  };
+
+  const generateCanvas = () => {
+    if (!canvasRef.current || !wrapperRef.current) throw new Error('');
+    const sizes = getsizes(pixelRatio, wrapperRef.current.clientWidth);
+    const adjustedPixelRatio =
+      window.devicePixelRatio && window.devicePixelRatio > 2 ? 2 * window.devicePixelRatio : 4;
+    const { clientWidth } = wrapperRef.current;
+    canvasRef.current.width = CANVAS_SIZE * adjustedPixelRatio;
+    canvasRef.current.height = CANVAS_SIZE * adjustedPixelRatio;
+    canvasRef.current.style.width = `${clientWidth}px`;
+    canvasRef.current.style.height = `${clientWidth}px`;
+    context.current = canvasRef.current.getContext('2d', { alpha: false });
+    coords.current = getCoords(sizes);
+    //   (coords = Object(i.b)(sizes)),
+    //   store.dispatch(c.e.setCoords, coords),
+    //   wrapper.appendChild(canvas),
+    //   clearCanvas(),
+    //   drawGrid())
+    // );
+    clearCanvas();
+    drawGrid();
+    // drawOuterBorders();
+  };
+  useEffect(() => {
+    generateCanvas();
+    paintBoard();
+  });
+
+  return (
+    <div ref={wrapperRef} onClick={handleClickCanvas}>
+      <canvas ref={canvasRef} />
+    </div>
+  );
+};

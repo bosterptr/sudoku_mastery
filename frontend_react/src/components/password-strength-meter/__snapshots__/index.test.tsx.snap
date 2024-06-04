@@ -1,0 +1,278 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PasswordStrengthMeter renders a game with required props 1`] = `
+.c0 {
+  color: #3d4150;
+  font-size: 12px;
+  height: 16px;
+  line-height: 16px;
+  margin-top: 4px;
+  position: relative;
+  text-align: center;
+}
+
+<div
+  role="status"
+>
+  <p
+    class="c0"
+  >
+    Password must have at least 8 characters
+  </p>
+</div>
+`;
+
+exports[`PasswordStrengthMeter renders with password "Password1" and score 0 1`] = `
+.c0 {
+  background: #24292e4d;
+  height: 2px;
+  margin-top: 5px;
+  position: relative;
+  width: 100%;
+}
+
+.c0::before {
+  background: #ed6c02;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: all 0.2s ease-out;
+  width: 0%;
+}
+
+.c1 {
+  border-left: 5px solid #fff;
+  border-right: 5px solid #fff;
+  bottom: 0;
+  left: 19%;
+  position: absolute;
+  right: 19%;
+  top: 0;
+}
+
+.c1::after {
+  border-left: 5px solid #fff;
+  border-right: 5px solid #fff;
+  bottom: 0;
+  content: '';
+  left: 30%;
+  position: absolute;
+  right: 30%;
+  top: 0;
+}
+
+<div
+  class="c0"
+  data-testid="bar"
+>
+  <span
+    class="c1"
+  />
+</div>
+`;
+
+exports[`PasswordStrengthMeter renders with password "Password123!@3" and score 2 1`] = `
+.c0 {
+  background: #24292e4d;
+  height: 2px;
+  margin-top: 5px;
+  position: relative;
+  width: 100%;
+}
+
+.c0::before {
+  background: #4caf50;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: all 0.2s ease-out;
+  width: 62%;
+}
+
+.c1 {
+  border-left: 5px solid #fff;
+  border-right: 5px solid #fff;
+  bottom: 0;
+  left: 19%;
+  position: absolute;
+  right: 19%;
+  top: 0;
+}
+
+.c1::after {
+  border-left: 5px solid #fff;
+  border-right: 5px solid #fff;
+  bottom: 0;
+  content: '';
+  left: 30%;
+  position: absolute;
+  right: 30%;
+  top: 0;
+}
+
+<div
+  class="c0"
+  data-testid="bar"
+>
+  <span
+    class="c1"
+  />
+</div>
+`;
+
+exports[`PasswordStrengthMeter renders with password "Password123!@3gh" and score 3 1`] = `
+.c0 {
+  background: #24292e4d;
+  height: 2px;
+  margin-top: 5px;
+  position: relative;
+  width: 100%;
+}
+
+.c0::before {
+  background: #2e7d32;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: all 0.2s ease-out;
+  width: 80%;
+}
+
+.c1 {
+  border-left: 5px solid #fff;
+  border-right: 5px solid #fff;
+  bottom: 0;
+  left: 19%;
+  position: absolute;
+  right: 19%;
+  top: 0;
+}
+
+.c1::after {
+  border-left: 5px solid #fff;
+  border-right: 5px solid #fff;
+  bottom: 0;
+  content: '';
+  left: 30%;
+  position: absolute;
+  right: 30%;
+  top: 0;
+}
+
+<div
+  class="c0"
+  data-testid="bar"
+>
+  <span
+    class="c1"
+  />
+</div>
+`;
+
+exports[`PasswordStrengthMeter renders with password "Password123!@3ghhfgd" and score 4 1`] = `
+.c0 {
+  background: #24292e4d;
+  height: 2px;
+  margin-top: 5px;
+  position: relative;
+  width: 100%;
+}
+
+.c0::before {
+  background: #1b5e20;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+
+.c1 {
+  border-left: 5px solid #fff;
+  border-right: 5px solid #fff;
+  bottom: 0;
+  left: 19%;
+  position: absolute;
+  right: 19%;
+  top: 0;
+}
+
+.c1::after {
+  border-left: 5px solid #fff;
+  border-right: 5px solid #fff;
+  bottom: 0;
+  content: '';
+  left: 30%;
+  position: absolute;
+  right: 30%;
+  top: 0;
+}
+
+<div
+  class="c0"
+  data-testid="bar"
+>
+  <span
+    class="c1"
+  />
+</div>
+`;
+
+exports[`PasswordStrengthMeter renders with password "Password123" and score 1 1`] = `
+.c0 {
+  background: #24292e4d;
+  height: 2px;
+  margin-top: 5px;
+  position: relative;
+  width: 100%;
+}
+
+.c0::before {
+  background: #ed6c02;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: all 0.2s ease-out;
+  width: 38%;
+}
+
+.c1 {
+  border-left: 5px solid #fff;
+  border-right: 5px solid #fff;
+  bottom: 0;
+  left: 19%;
+  position: absolute;
+  right: 19%;
+  top: 0;
+}
+
+.c1::after {
+  border-left: 5px solid #fff;
+  border-right: 5px solid #fff;
+  bottom: 0;
+  content: '';
+  left: 30%;
+  position: absolute;
+  right: 30%;
+  top: 0;
+}
+
+<div
+  class="c0"
+  data-testid="bar"
+>
+  <span
+    class="c1"
+  />
+</div>
+`;

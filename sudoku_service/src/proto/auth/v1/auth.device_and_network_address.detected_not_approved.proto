@@ -1,0 +1,9 @@
+syntax = "proto2";
+package org.sudoku.auth.v1.device_and_network_address;
+ 
+message detected_not_approved {
+  required string userId = 1;
+  required string newDeviceUA = 2;
+  required string ip = 3;
+  required string token = 4;
+}

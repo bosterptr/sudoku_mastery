@@ -1,0 +1,15 @@
+# /node_modules/* in the project root is ignored by default
+# build artefacts
+dist/*
+coverage/*
+src/mq/proto/index.js
+# data definition files
+**/*.d.ts
+# 3rd party libs
+/src/public/
+# # custom definition files
+/src/types/
+node_modules
+migrations
+sonar*.js
+.eslintrc.js

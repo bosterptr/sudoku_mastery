@@ -1,0 +1,8 @@
+syntax = "proto3";
+package org.sudoku.sudoku.eventbus.events.auth.v1.network_address;
+option go_package = "network_address";
+
+message added_to_user {
+  string user_id = 1;
+  string ipv4 = 2;
+}

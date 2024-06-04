@@ -1,0 +1,7 @@
+syntax = "proto2";
+package org.sudoku.auth.v1.user;
+message email_is_already_registered {
+  required string email = 1;
+  required string ip = 2;
+  required string deviceUA = 3;
+}

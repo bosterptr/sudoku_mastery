@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SudokuCanvas renders canvas with all props 1`] = `
+<DocumentFragment>
+  .c0 {
+  position: relative;
+  width: 100%;
+  flex-basis: 60%;
+  min-width: 250px;
+  max-width: 500px;
+  display: none;
+}
+
+.c1 {
+  max-width: 100%;
+  max-height: 100%;
+  cursor: pointer;
+}
+
+<div
+    class="c0"
+  >
+    <div
+      class=""
+    >
+      <canvas
+        class="c1"
+        data-testid="sudoku-canvas"
+        height="500"
+        style="width: 500px; height: 500px;"
+        width="500"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SudokuCanvas renders canvas with devicePixelRatio > 2 1`] = `
+<DocumentFragment>
+  .c0 {
+  position: relative;
+  width: 100%;
+  flex-basis: 60%;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.c1 {
+  max-width: 100%;
+  max-height: 100%;
+  cursor: pointer;
+}
+
+<div
+    class="c0"
+  >
+    <div
+      class=""
+    >
+      <canvas
+        class="c1"
+        data-testid="sudoku-canvas"
+        height="3000"
+        style="width: 500px; height: 500px;"
+        width="3000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`SudokuCanvas renders canvas with required props 1`] = `
+<DocumentFragment>
+  .c0 {
+  position: relative;
+  width: 100%;
+  flex-basis: 60%;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.c1 {
+  max-width: 100%;
+  max-height: 100%;
+  cursor: pointer;
+}
+
+<div
+    class="c0"
+  >
+    <div
+      class=""
+    >
+      <canvas
+        class="c1"
+        data-testid="sudoku-canvas"
+        height="2000"
+        style="width: 500px; height: 500px;"
+        width="2000"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

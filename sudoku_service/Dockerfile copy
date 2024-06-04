@@ -1,0 +1,75 @@
+# syntax=docker/dockerfile:1
+ARG USUBTU_VERSION=24.04
+ARG APP_NAME=sudoku_service
+# xx is a helper for cross-compilation.
+# See https://github.com/tonistiigi/xx/ for more information.
+FROM --platform=$BUILDPLATFORM tonistiigi/xx:1.4.0 AS xx
+FROM --platform=$BUILDPLATFORM ubuntu:${USUBTU_VERSION} AS build
+ARG APP_NAME
+WORKDIR /app
+ENV SQLX_OFFLINE=true
+COPY --from=xx / /.
+RUN apt-get update && apt-get install -y \
+    bash \
+    build-essential \
+    clang \
+    file \
+    g++ \
+    git \
+    libc-dev \
+    libprotobuf-dev \
+    librdkafka-dev \
+    libssl-dev \
+    lld \
+    musl-tools \
+    openssl \
+    pkg-config \
+    protobuf-compiler \
+    python3 \
+    python3-pip \
+    valgrind \
+    zlib1g-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+RUN echo 'source $HOME/.cargo/env' >> $HOME/.bashrc
+
+ARG TARGETPLATFORM
+
+# Install cross compilation build dependencies.
+# Note: For Ubuntu, musl-tools might be used for musl development. Adjust accordingly.
+RUN apt-get update && apt-get install -y \
+    musl-tools \
+    gcc && \
+    rm -rf /var/lib/apt/lists/*
+
+# Assuming your application setup doesn't change, no modifications needed here.
+RUN --mount=type=bind,source=src,target=src \
+    --mount=type=bind,source=Cargo.toml,target=Cargo.toml \
+    --mount=type=bind,source=build.rs,target=build.rs \
+    --mount=type=bind,source=migrations,target=migrations \
+    --mount=type=bind,source=Cargo.lock,target=Cargo.lock \
+    --mount=type=bind,source=sqlx-data.json,target=sqlx-data.json \
+    --mount=type=cache,target=/app/target/,id=rust-cache-${APP_NAME}-${TARGETPLATFORM} \
+    --mount=type=cache,target=/usr/local/cargo/git/db \
+    --mount=type=cache,target=/usr/local/cargo/registry/ \
+    cargo build --locked --release --target-dir ./target && \
+    cp ./target/$(cargo --print-target-triple)/release/$APP_NAME /bin/server && \
+    # xx-verify might not be directly available or necessary on Ubuntu. If you have a specific verification tool, replace or remove this line.
+    echo "Verification step might need to be adjusted for Ubuntu."
+
+FROM alpine:3.18 AS final
+RUN apk add --no-cache openssl-dev librdkafka-dev pkgconfig
+ARG UID=10001
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/nonexistent" \
+    --shell "/sbin/nologin" \
+    --no-create-home \
+    --uid "${UID}" \
+    appuser
+USER appuser
+COPY --from=build /bin/server /bin/
+EXPOSE 5000
+CMD ["/bin/server"]

@@ -1,0 +1,6 @@
+syntax = "proto2";
+package org.sudoku.auth.v1.network_address;
+message added_to_user {
+  required string userId = 1;
+  required string networkAddressId = 2;
+}

@@ -1,0 +1,9 @@
+syntax = "proto2";
+package org.sudoku.auth.v1.user;
+message created_not_activated {
+  required string email = 1;
+  required string mobilePhone = 2;
+  required string deviceId = 3;
+  required string hashedPassword = 4;
+  required string activationToken = 5;
+}

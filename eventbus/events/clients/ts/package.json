@@ -1,0 +1,26 @@
+{
+  "name": "evenbus_client",
+  "version": "1.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run compile-proto && tsc && npm run compile-proto-dist",
+    "compile-proto-dist": "pbjs -t static-module -w commonjs ../../schema/events/**/*.proto -o ./dist/proto/index.js && pbts -o ./dist/proto/index.d.ts ./dist/proto/index.js && terser ./dist/proto/index.js -c passes=2 -o ./dist/proto/index.js",
+    "compile-proto": "pbjs -t static-module -w commonjs ../../schema/events/**/*.proto -o ./src/proto/index.js && pbts -o ./src/proto/index.d.ts ./src/proto/index.js && terser ./src/proto/index.js -c passes=2 -o ./src/proto/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "protobufjs": "^7.2.6"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "kafkajs": "^2.2.4",
+    "protobufjs": "^7.2.6",
+    "protobufjs-cli": "^1.1.2",
+    "terser": "^5.30.3"
+  }
+}

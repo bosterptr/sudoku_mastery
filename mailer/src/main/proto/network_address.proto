@@ -1,0 +1,17 @@
+syntax = "proto3";
+package org.sudoku.sudoku.auth.v1.network_address;
+option java_outer_classname = "NetworkAddressProto";
+option java_package = "org.sudoku.sudoku.eventbus.events.auth.v1.network_address";
+
+message added_to_user {
+  string user_id = 1;
+  string ipv4 = 2;
+}
+
+message detected_not_approved {
+  string user_id = 1;
+  string user_email = 2;
+  string ipv4 = 3;
+  string device_ua = 4;
+  string token = 5;
+}

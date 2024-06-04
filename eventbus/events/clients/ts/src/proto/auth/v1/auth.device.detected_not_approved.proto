@@ -1,0 +1,12 @@
+syntax = "proto3";
+package org.sudoku.sudoku.eventbus.events.auth.v1.device;
+option java_outer_classname = "DeviceProto";
+option java_package = "org.sudoku.sudoku.eventbus.events.auth.v1.device";
+
+message detected_not_approved {
+  string user_id = 1;
+  string user_email = 2;
+  string ipv4 = 3;
+  string device_ua = 4;
+  string token = 5;
+}

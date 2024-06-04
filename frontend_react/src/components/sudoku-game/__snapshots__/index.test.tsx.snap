@@ -1,0 +1,544 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SudokuGame renders a game with required props 1`] = `
+<DocumentFragment>
+  .c16 {
+  fill: #3d4150;
+  stroke: transparent;
+}
+
+.c10 {
+  position: relative;
+  width: 100%;
+  flex-basis: 60%;
+  min-width: 250px;
+  max-width: 500px;
+}
+
+.c11 {
+  max-width: 100%;
+  max-height: 100%;
+  cursor: pointer;
+}
+
+.c2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.c3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #24292ebf;
+}
+
+.c4 {
+  align-items: center;
+  border-radius: 3px;
+  border: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 1.75;
+  text-decoration: none;
+  transition: color 0.2s ease,background-color 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,filter 0.2s ease;
+  user-select: none;
+  padding: 6px 8px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #1648ff;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: #ffffff;
+}
+
+.c4:focus {
+  outline: none;
+  text-decoration: none;
+}
+
+.c4:hover {
+  color: #fff;
+  background-color: #1236bb14;
+  text-decoration: none;
+}
+
+.c4:active {
+  background-color: #1648ff;
+  color: #fff;
+  box-shadow: 0px 4px 8px #181a1b33;
+}
+
+.c5 {
+  align-items: center;
+  border-radius: 3px;
+  border: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 1.75;
+  text-decoration: none;
+  transition: color 0.2s ease,background-color 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,filter 0.2s ease;
+  user-select: none;
+  padding: 6px 8px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #1648ff;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.c5:focus {
+  outline: none;
+  text-decoration: none;
+}
+
+.c5:hover {
+  color: #fff;
+  background-color: #1236bb14;
+  text-decoration: none;
+}
+
+.c5:active {
+  background-color: #1648ff;
+  color: #fff;
+  box-shadow: 0px 4px 8px #181a1b33;
+}
+
+.c1 {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.c7 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.43;
+  color: #3d4150;
+}
+
+.c6 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 38%;
+}
+
+.c8 {
+  color: #000000;
+  font-size: 13px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.c20 {
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 0;
+  color: #1648ff;
+  cursor: pointer;
+  flex-basis: 32%;
+  font-size: 3.2em;
+  font-weight: 700;
+  height: auto;
+  margin: 1%;
+  padding: 0px;
+  text-align: center;
+  transition: background-color 0.1s ease-in-out,color 0.1s ease-in-out;
+}
+
+.c20:hover {
+  background-color: #f0f4f4;
+  color: #1648ff;
+}
+
+.c20:active {
+  background-color: #1648ff;
+  color: #fff;
+}
+
+.c19 {
+  display: flex;
+  flex-wrap: wrap;
+  height: 300px;
+  width: 300px;
+}
+
+.c14 {
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.c15 {
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #1648ff;
+  color: #1648ff;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.8em;
+  justify-content: center;
+  min-height: 64px;
+  min-width: 64px;
+  user-select: none;
+  transition: color 0.3s ease,background-color 0.3s ease;
+}
+
+.c15:hover {
+  color: #1648ff;
+  background-color: #f4f5f5;
+  fill: #1648ff;
+}
+
+.c15:active {
+  background-color: #1648ff;
+  color: #ffffff;
+  fill: #1648ff;
+}
+
+.c17 {
+  color: #24292ebf;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.c18 {
+  align-items: center;
+  background-color: #1648ff;
+  border-radius: 50px;
+  box-shadow: 0px 1px 2px #181a1b33;
+  color: #fff;
+  display: flex;
+  font-size: 12px;
+  font-weight: 700;
+  justify-content: center;
+  left: 50%;
+  padding: 0;
+  padding: 8px;
+  position: absolute;
+  top: -16%;
+  user-select: none;
+  z-index: 1;
+  transition: 0.2s ease background-color,0.2s ease color;
+  background-color: #f0f4f4;
+  color: #3d4150;
+}
+
+.c13 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.c12 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.c9 {
+  flex-direction: row;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.c0 {
+  flex-direction: column;
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+}
+
+@media (max-width: 400px) {
+  .c20 {
+    font-size: 2.4em;
+  }
+}
+
+@media (min-width: 801px) {
+  .c20:nth-child(3n-2) {
+    margin-left: 0;
+  }
+
+  .c20:nth-child(3n) {
+    margin-right: 0;
+  }
+
+  .c20:first-child,
+  .c20:nth-child(2),
+  .c20:nth-child(3) {
+    margin-top: 0;
+  }
+
+  .c20:nth-child(7),
+  .c20:nth-child(8),
+  .c20:nth-child(9) {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .c12 {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+  .c9 {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) {
+  .c9 {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 801px) {
+  .c9 {
+    min-width: 801px;
+  }
+}
+
+<div
+    class="c0"
+  >
+    <div
+      class="c1"
+    >
+      <span
+        class="c2"
+      >
+        <div
+          class="c3"
+        >
+          Difficulty:
+        </div>
+        <div
+          class="c4"
+        >
+          Easy
+        </div>
+        <div
+          class="c5"
+        >
+          Medium
+        </div>
+        <div
+          class="c5"
+        >
+          Hard
+        </div>
+        <div
+          class="c5"
+        >
+          Expert
+        </div>
+      </span>
+      <div
+        class="c6"
+      >
+        <div
+          class="c7"
+        >
+          Mistakes:
+          <span
+            class="c8"
+          >
+            0/3
+          </span>
+        </div>
+        <div
+          class="c7"
+        >
+          Score:
+          <span
+            class="c8"
+          >
+            0
+          </span>
+        </div>
+        <div
+          class="c7"
+        >
+          00:00
+        </div>
+      </div>
+    </div>
+    <div
+      class="c9"
+    >
+      <div
+        class="c10"
+      >
+        <div
+          class=""
+        >
+          <canvas
+            class="c11"
+            data-testid="sudoku-canvas"
+            height="2000"
+            style="width: 0px; height: 0px;"
+            width="2000"
+          />
+        </div>
+      </div>
+      <div
+        class="c12"
+      >
+        <div
+          class="c13"
+        >
+          <button
+            class="c14"
+          >
+            <div
+              class="c15"
+            >
+              <svg
+                class="c16"
+                height="16px"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="16px"
+              >
+                <path
+                  d="M212.333 224.333H12c-6.627 0-12-5.373-12-12V12C0 5.373 5.373 0 12 0h48c6.627 0 12 5.373 12 12v78.112C117.773 39.279 184.26 7.47 258.175 8.007c136.906.994 246.448 111.623 246.157 248.532C504.041 393.258 393.12 504 256.333 504c-64.089 0-122.496-24.313-166.51-64.215-5.099-4.622-5.334-12.554-.467-17.42l33.967-33.967c4.474-4.474 11.662-4.717 16.401-.525C170.76 415.336 211.58 432 256.333 432c97.268 0 176-78.716 176-176 0-97.267-78.716-176-176-176-58.496 0-110.28 28.476-142.274 72.333h98.274c6.627 0 12 5.373 12 12v48c0 6.627-5.373 12-12 12z"
+                />
+              </svg>
+            </div>
+            <div
+              class="c17"
+            >
+              Undo
+            </div>
+          </button>
+          <button
+            class="c14"
+          >
+            <div
+              class="c15"
+            >
+              <svg
+                class="c16"
+                height="16px"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="16px"
+              >
+                <path
+                  d="M497.941 273.941c18.745-18.745 18.745-49.137 0-67.882l-160-160c-18.745-18.745-49.136-18.746-67.883 0l-256 256c-18.745 18.745-18.745 49.137 0 67.882l96 96A48.004 48.004 0 0 0 144 480h356c6.627 0 12-5.373 12-12v-40c0-6.627-5.373-12-12-12H355.883l142.058-142.059zm-302.627-62.627l137.373 137.373L265.373 416H150.628l-80-80 124.686-124.686z"
+                />
+              </svg>
+            </div>
+            <div
+              class="c17"
+            >
+              Erase
+            </div>
+          </button>
+          <button
+            class="c14"
+          >
+            <div
+              class="c15"
+            >
+              <svg
+                class="c16"
+                height="16px"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="16px"
+              >
+                <path
+                  d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"
+                />
+              </svg>
+            </div>
+            <div
+              class="c18"
+            >
+              OFF
+            </div>
+            <div
+              class="c17"
+            >
+              Notes
+            </div>
+          </button>
+        </div>
+        <div
+          class="c19 "
+        >
+          <button
+            class="c20"
+          >
+            1
+          </button>
+          <button
+            class="c20"
+          >
+            2
+          </button>
+          <button
+            class="c20"
+          >
+            3
+          </button>
+          <button
+            class="c20"
+          >
+            4
+          </button>
+          <button
+            class="c20"
+          >
+            5
+          </button>
+          <button
+            class="c20"
+          >
+            6
+          </button>
+          <button
+            class="c20"
+          >
+            7
+          </button>
+          <button
+            class="c20"
+          >
+            8
+          </button>
+          <button
+            class="c20"
+          >
+            9
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

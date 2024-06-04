@@ -1,0 +1,44 @@
+syntax = "proto3";
+package org.sudoku.sudoku.auth.v1.user;
+option java_outer_classname = "UserProto";
+option java_package = "org.sudoku.sudoku.eventbus.events.auth.v1.user";
+
+message created_not_activated {
+   string user_email = 1;
+   string display_name = 2;
+   string activation_token = 3;
+}
+
+message created {
+  string user_id = 1;
+  string user_email = 2;
+  string first_name = 3;
+  string last_name = 4;
+}
+
+message email_is_already_registered {
+  string user_email = 1;
+  string ip = 2;
+  string device_ua = 3;
+}
+
+message password_update {
+  string user_id = 1;
+}
+  
+message updated {
+  string id = 1;
+  string avatar = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string profile_bio = 5;
+  int32 token_version = 6;
+  string login = 7;
+}
+
+message requested_new_password {
+  string email = 1;
+  string token = 2;
+  string ip = 3;
+  string device_ua = 4;
+}

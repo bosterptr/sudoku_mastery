@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopNav renders correctly and matches snapshot 1`] = `
+<DocumentFragment>
+  .c3 {
+  align-items: center;
+  border-radius: 3px;
+  border: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 1.75;
+  text-decoration: none;
+  transition: color 0.2s ease,background-color 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,filter 0.2s ease;
+  user-select: none;
+  background-color: transparent;
+  color: #1648ff;
+  fill: #fff;
+  border: 2px solid transparent;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 0.875rem;
+  padding: 6px 8px;
+}
+
+.c3:focus:not {
+  outline: 0;
+}
+
+.c3:focus {
+  outline: none;
+  text-decoration: none;
+}
+
+.c3:hover {
+  color: #fff;
+  background-color: #1236bb14;
+  text-decoration: none;
+}
+
+.c3:active {
+  background-color: #1648ff;
+  color: #fff;
+  box-shadow: 0px 4px 8px #181a1b33;
+}
+
+.c3:active>* {
+  stroke: #fff;
+  fill: #fff;
+}
+
+.c4 {
+  fill: #3d4150;
+  stroke: transparent;
+}
+
+.c8 {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.c9 {
+  background: #1648ff;
+  border-radius: 1rem;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  margin: auto 10px;
+  padding: 0.9rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.c9:hover {
+  border-radius: 2rem;
+  color: rgb(229, 229, 229);
+}
+
+.c7 {
+  z-index: 1000;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+.c1 {
+  backdrop-filter: blur(10px);
+  background-color: #ffffff;
+  border-bottom: 1px solid #24292e1f;
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 10;
+}
+
+.c2 {
+  height: 100%;
+  align-items: center;
+  display: flex;
+}
+
+.c6 {
+  font-size: 16px;
+}
+
+.c5 {
+  border-radius: 1rem;
+  color: #3d4150;
+  cursor: pointer;
+  font-weight: 600;
+  margin: auto 10px;
+  padding: 0.9rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.c5:hover {
+  background: #4870fd;
+  border-radius: 2rem;
+  color: rgb(229, 229, 229);
+}
+
+.c0 {
+  z-index: 1000;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+<nav
+    class="c0"
+  >
+    <div
+      class="c1"
+    >
+      <div
+        class="c2"
+      >
+        <button
+          class="c3"
+          color="rgba(0, 0, 0, .2)"
+          type="button"
+        >
+          <svg
+            class="c4"
+            height="18px"
+            stroke-width="0"
+            viewBox="0 0 576 512"
+            width="18px"
+          >
+            <path
+              d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"
+            />
+          </svg>
+        </button>
+        <a
+          class="c5"
+          href="/create"
+        >
+          <span
+            class="c6"
+          >
+            Create
+          </span>
+        </a>
+      </div>
+      <nav
+        class="c7"
+      >
+        <div
+          class="c8"
+        >
+          <a
+            class="c9"
+            href="/auth/signin"
+          >
+            Sign in
+          </a>
+        </div>
+      </nav>
+    </div>
+  </nav>
+</DocumentFragment>
+`;
